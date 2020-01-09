@@ -15,6 +15,8 @@
 		BB907C6B23C72058000E5B0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB907C6923C72058000E5B0F /* LaunchScreen.storyboard */; };
 		BB907C7623C72058000E5B0F /* imagearTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB907C7523C72058000E5B0F /* imagearTests.swift */; };
 		BB907C8123C72059000E5B0F /* imagearUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB907C8023C72059000E5B0F /* imagearUITests.swift */; };
+		BBCB259C23C733BA0047635B /* MAECVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = BBCB259B23C733BA0047635B /* MAECVWrapper.mm */; };
+		BBCB259E23C734160047635B /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCB259D23C734160047635B /* opencv2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,11 @@
 		BB907C7C23C72059000E5B0F /* imagearUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = imagearUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB907C8023C72059000E5B0F /* imagearUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imagearUITests.swift; sourceTree = "<group>"; };
 		BB907C8223C72059000E5B0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BBCB259923C733BA0047635B /* imagear-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "imagear-Bridging-Header.h"; sourceTree = "<group>"; };
+		BBCB259A23C733BA0047635B /* MAECVWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAECVWrapper.h; sourceTree = "<group>"; };
+		BBCB259B23C733BA0047635B /* MAECVWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MAECVWrapper.mm; sourceTree = "<group>"; };
+		BBCB259D23C734160047635B /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		BBCB259F23C734570047635B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBCB259E23C734160047635B /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +87,7 @@
 		BB907C5223C72058000E5B0F = {
 			isa = PBXGroup;
 			children = (
+				BBCB259D23C734160047635B /* opencv2.framework */,
 				BB907C5D23C72058000E5B0F /* imagear */,
 				BB907C7423C72058000E5B0F /* imagearTests */,
 				BB907C7F23C72059000E5B0F /* imagearUITests */,
@@ -99,12 +108,9 @@
 		BB907C5D23C72058000E5B0F /* imagear */ = {
 			isa = PBXGroup;
 			children = (
-				BB907C5E23C72058000E5B0F /* AppDelegate.swift */,
-				BB907C6023C72058000E5B0F /* SceneDelegate.swift */,
-				BB907C6223C72058000E5B0F /* ViewController.swift */,
-				BB907C6423C72058000E5B0F /* Main.storyboard */,
-				BB907C6723C72058000E5B0F /* Assets.xcassets */,
-				BB907C6923C72058000E5B0F /* LaunchScreen.storyboard */,
+				BBCB259823C7339C0047635B /* Config */,
+				BBCB259623C733790047635B /* Bridging */,
+				BBCB259723C7338E0047635B /* View Controllers */,
 				BB907C6C23C72058000E5B0F /* Info.plist */,
 			);
 			path = imagear;
@@ -126,6 +132,37 @@
 				BB907C8223C72059000E5B0F /* Info.plist */,
 			);
 			path = imagearUITests;
+			sourceTree = "<group>";
+		};
+		BBCB259623C733790047635B /* Bridging */ = {
+			isa = PBXGroup;
+			children = (
+				BBCB259A23C733BA0047635B /* MAECVWrapper.h */,
+				BBCB259B23C733BA0047635B /* MAECVWrapper.mm */,
+				BBCB259923C733BA0047635B /* imagear-Bridging-Header.h */,
+				BBCB259F23C734570047635B /* PrefixHeader.pch */,
+			);
+			path = Bridging;
+			sourceTree = "<group>";
+		};
+		BBCB259723C7338E0047635B /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BB907C6223C72058000E5B0F /* ViewController.swift */,
+				BB907C6423C72058000E5B0F /* Main.storyboard */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		BBCB259823C7339C0047635B /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				BB907C5E23C72058000E5B0F /* AppDelegate.swift */,
+				BB907C6023C72058000E5B0F /* SceneDelegate.swift */,
+				BB907C6723C72058000E5B0F /* Assets.xcassets */,
+				BB907C6923C72058000E5B0F /* LaunchScreen.storyboard */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,6 +233,7 @@
 				TargetAttributes = {
 					BB907C5A23C72058000E5B0F = {
 						CreatedOnToolsVersion = 11.3;
+						LastSwiftMigration = 1130;
 					};
 					BB907C7023C72058000E5B0F = {
 						CreatedOnToolsVersion = 11.3;
@@ -261,6 +299,7 @@
 			files = (
 				BB907C6323C72058000E5B0F /* ViewController.swift in Sources */,
 				BB907C5F23C72058000E5B0F /* AppDelegate.swift in Sources */,
+				BBCB259C23C733BA0047635B /* MAECVWrapper.mm in Sources */,
 				BB907C6123C72058000E5B0F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,8 +473,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R4DQ2L3FBV;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = imagear/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -443,6 +487,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.maelabs.imagear.imagear;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "imagear/Bridging/imagear-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -452,8 +498,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R4DQ2L3FBV;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = imagear/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -461,6 +512,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.maelabs.imagear.imagear;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "imagear/Bridging/imagear-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
