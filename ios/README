@@ -1,1 +1,7 @@
-Put all iOS stuff in this folder including the image framework
+# iOS ImageAR
+
+
+### Installation 
+To install the iOS app properly, you will need the opencv framework for iOS pack installable from [Here](https://opencv.org/releases/).  THe app was made with iOS Pack Open CV Version 4.2.0
+
+The framework should be put at the path, `ios/opencv2.framework`
