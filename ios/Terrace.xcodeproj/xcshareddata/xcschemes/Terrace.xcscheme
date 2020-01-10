@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BB907C5A23C72058000E5B0F"
-               BuildableName = "Imagear.app"
-               BlueprintName = "Imagear"
-               ReferencedContainer = "container:Imagear.xcodeproj">
+               BuildableName = "Terrace.app"
+               BlueprintName = "Terrace"
+               ReferencedContainer = "container:Terrace.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BB907C7023C72058000E5B0F"
-               BuildableName = "ImagearTests.xctest"
-               BlueprintName = "ImagearTests"
-               ReferencedContainer = "container:Imagear.xcodeproj">
+               BuildableName = "TerraceTests.xctest"
+               BlueprintName = "TerraceTests"
+               ReferencedContainer = "container:Terrace.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BB907C7B23C72059000E5B0F"
-               BuildableName = "ImagearUITests.xctest"
-               BlueprintName = "ImagearUITests"
-               ReferencedContainer = "container:Imagear.xcodeproj">
+               BuildableName = "TerraceUITests.xctest"
+               BlueprintName = "TerraceUITests"
+               ReferencedContainer = "container:Terrace.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BB907C5A23C72058000E5B0F"
-            BuildableName = "Imagear.app"
-            BlueprintName = "Imagear"
-            ReferencedContainer = "container:Imagear.xcodeproj">
+            BuildableName = "Terrace.app"
+            BlueprintName = "Terrace"
+            ReferencedContainer = "container:Terrace.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -82,9 +82,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BB907C5A23C72058000E5B0F"
-            BuildableName = "Imagear.app"
-            BlueprintName = "Imagear"
-            ReferencedContainer = "container:Imagear.xcodeproj">
+            BuildableName = "Terrace.app"
+            BlueprintName = "Terrace"
+            ReferencedContainer = "container:Terrace.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

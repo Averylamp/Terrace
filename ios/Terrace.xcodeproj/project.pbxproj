@@ -7,20 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		631B341DC2CC5A838ADE441C /* Pods_TerraceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C528412A3FB299C4A30A086 /* Pods_TerraceTests.framework */; };
+		7DD06A689F88BA82BDE5BBE9 /* Pods_Terrace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 083C4E32353D7CD933176249 /* Pods_Terrace.framework */; };
+		BB2814A423C862DD000FBCBE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2814A323C862DD000FBCBE /* GoogleService-Info.plist */; };
 		BB907C5F23C72058000E5B0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB907C5E23C72058000E5B0F /* AppDelegate.swift */; };
 		BB907C6123C72058000E5B0F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB907C6023C72058000E5B0F /* SceneDelegate.swift */; };
 		BB907C6323C72058000E5B0F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB907C6223C72058000E5B0F /* MainViewController.swift */; };
 		BB907C6623C72058000E5B0F /* MainViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB907C6423C72058000E5B0F /* MainViewController.storyboard */; };
 		BB907C6823C72058000E5B0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB907C6723C72058000E5B0F /* Assets.xcassets */; };
 		BB907C6B23C72058000E5B0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB907C6923C72058000E5B0F /* LaunchScreen.storyboard */; };
-		BB907C7623C72058000E5B0F /* ImagearTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB907C7523C72058000E5B0F /* ImagearTests.swift */; };
-		BB907C8123C72059000E5B0F /* ImagearUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB907C8023C72059000E5B0F /* ImagearUITests.swift */; };
-		BBC3295E23C82EDE004922B8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBC3295D23C82EDE004922B8 /* GoogleService-Info.plist */; };
+		BB907C7623C72058000E5B0F /* TerraceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB907C7523C72058000E5B0F /* TerraceTests.swift */; };
+		BB907C8123C72059000E5B0F /* TerraceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB907C8023C72059000E5B0F /* TerraceUITests.swift */; };
 		BBC3296123C833DA004922B8 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC3296023C833DA004922B8 /* R.generated.swift */; };
 		BBCB259C23C733BA0047635B /* MAECVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = BBCB259B23C733BA0047635B /* MAECVWrapper.mm */; };
 		BBCB259E23C734160047635B /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCB259D23C734160047635B /* opencv2.framework */; };
-		C0748088275049A8E38E5CD0 /* Pods_Imagear.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 861415B88FDEB546460ABDEE /* Pods_Imagear.framework */; };
-		F1719F4E5351E925B80947E1 /* Pods_ImagearTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AE4F75F02ACC09AA95E60A /* Pods_ImagearTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,11 +41,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0420D65EC4D5F92B0BAD66FF /* Pods-TerraceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TerraceTests.release.xcconfig"; path = "Target Support Files/Pods-TerraceTests/Pods-TerraceTests.release.xcconfig"; sourceTree = "<group>"; };
+		083C4E32353D7CD933176249 /* Pods_Terrace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Terrace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C7C2D027F516D8E0933591E /* Pods-Terrace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Terrace.debug.xcconfig"; path = "Target Support Files/Pods-Terrace/Pods-Terrace.debug.xcconfig"; sourceTree = "<group>"; };
+		1C528412A3FB299C4A30A086 /* Pods_TerraceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TerraceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2755AC4281A405E605C57512 /* Pods-ImagearTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImagearTests.release.xcconfig"; path = "Target Support Files/Pods-ImagearTests/Pods-ImagearTests.release.xcconfig"; sourceTree = "<group>"; };
-		42AE4F75F02ACC09AA95E60A /* Pods_ImagearTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ImagearTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B165F8B1E172959B4B2E98F /* Pods-TerraceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TerraceTests.debug.xcconfig"; path = "Target Support Files/Pods-TerraceTests/Pods-TerraceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7A303FD47A72AFBC90CC086D /* Pods-Imagear.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagear.release.xcconfig"; path = "Target Support Files/Pods-Imagear/Pods-Imagear.release.xcconfig"; sourceTree = "<group>"; };
-		861415B88FDEB546460ABDEE /* Pods_Imagear.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Imagear.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB907C5B23C72058000E5B0F /* Imagear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Imagear.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB2814A323C862DD000FBCBE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BB907C5B23C72058000E5B0F /* Terrace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Terrace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB907C5E23C72058000E5B0F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB907C6023C72058000E5B0F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BB907C6223C72058000E5B0F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -53,19 +57,19 @@
 		BB907C6723C72058000E5B0F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BB907C6A23C72058000E5B0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB907C6C23C72058000E5B0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BB907C7123C72058000E5B0F /* ImagearTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImagearTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB907C7523C72058000E5B0F /* ImagearTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagearTests.swift; sourceTree = "<group>"; };
+		BB907C7123C72058000E5B0F /* TerraceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TerraceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB907C7523C72058000E5B0F /* TerraceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerraceTests.swift; sourceTree = "<group>"; };
 		BB907C7723C72058000E5B0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BB907C7C23C72059000E5B0F /* ImagearUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImagearUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB907C8023C72059000E5B0F /* ImagearUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagearUITests.swift; sourceTree = "<group>"; };
+		BB907C7C23C72059000E5B0F /* TerraceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TerraceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB907C8023C72059000E5B0F /* TerraceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerraceUITests.swift; sourceTree = "<group>"; };
 		BB907C8223C72059000E5B0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BBC3295D23C82EDE004922B8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BBC3296023C833DA004922B8 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		BBCB259923C733BA0047635B /* imagear-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "imagear-Bridging-Header.h"; sourceTree = "<group>"; };
 		BBCB259A23C733BA0047635B /* MAECVWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAECVWrapper.h; sourceTree = "<group>"; };
 		BBCB259B23C733BA0047635B /* MAECVWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MAECVWrapper.mm; sourceTree = "<group>"; };
 		BBCB259D23C734160047635B /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		BBCB259F23C734570047635B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		DBB0ED0608D5134FF8FA8188 /* Pods-Terrace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Terrace.release.xcconfig"; path = "Target Support Files/Pods-Terrace/Pods-Terrace.release.xcconfig"; sourceTree = "<group>"; };
 		DC19405CA0FE6C0EC6A4780C /* Pods-ImagearTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImagearTests.debug.xcconfig"; path = "Target Support Files/Pods-ImagearTests/Pods-ImagearTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F7B7B61B3969AD3F35F127AA /* Pods-Imagear.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagear.debug.xcconfig"; path = "Target Support Files/Pods-Imagear/Pods-Imagear.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,7 +80,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBCB259E23C734160047635B /* opencv2.framework in Frameworks */,
-				C0748088275049A8E38E5CD0 /* Pods_Imagear.framework in Frameworks */,
+				7DD06A689F88BA82BDE5BBE9 /* Pods_Terrace.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,7 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1719F4E5351E925B80947E1 /* Pods_ImagearTests.framework in Frameworks */,
+				631B341DC2CC5A838ADE441C /* Pods_TerraceTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +109,10 @@
 				7A303FD47A72AFBC90CC086D /* Pods-Imagear.release.xcconfig */,
 				DC19405CA0FE6C0EC6A4780C /* Pods-ImagearTests.debug.xcconfig */,
 				2755AC4281A405E605C57512 /* Pods-ImagearTests.release.xcconfig */,
+				0C7C2D027F516D8E0933591E /* Pods-Terrace.debug.xcconfig */,
+				DBB0ED0608D5134FF8FA8188 /* Pods-Terrace.release.xcconfig */,
+				6B165F8B1E172959B4B2E98F /* Pods-TerraceTests.debug.xcconfig */,
+				0420D65EC4D5F92B0BAD66FF /* Pods-TerraceTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -113,9 +121,9 @@
 			isa = PBXGroup;
 			children = (
 				BBCB259D23C734160047635B /* opencv2.framework */,
-				BB907C5D23C72058000E5B0F /* Imagear */,
-				BB907C7423C72058000E5B0F /* ImagearTests */,
-				BB907C7F23C72059000E5B0F /* ImagearUITests */,
+				BB907C5D23C72058000E5B0F /* Terrace */,
+				BB907C7423C72058000E5B0F /* TerraceTests */,
+				BB907C7F23C72059000E5B0F /* TerraceUITests */,
 				BB907C5C23C72058000E5B0F /* Products */,
 				4EB56C0C381C80A531F92409 /* Pods */,
 				FEB5FFF51DD89370BE64FD0A /* Frameworks */,
@@ -125,40 +133,40 @@
 		BB907C5C23C72058000E5B0F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BB907C5B23C72058000E5B0F /* Imagear.app */,
-				BB907C7123C72058000E5B0F /* ImagearTests.xctest */,
-				BB907C7C23C72059000E5B0F /* ImagearUITests.xctest */,
+				BB907C5B23C72058000E5B0F /* Terrace.app */,
+				BB907C7123C72058000E5B0F /* TerraceTests.xctest */,
+				BB907C7C23C72059000E5B0F /* TerraceUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BB907C5D23C72058000E5B0F /* Imagear */ = {
+		BB907C5D23C72058000E5B0F /* Terrace */ = {
 			isa = PBXGroup;
 			children = (
+				BB2814A323C862DD000FBCBE /* GoogleService-Info.plist */,
 				BBCB259823C7339C0047635B /* Config */,
 				BBCB259623C733790047635B /* Bridging */,
 				BBCB259723C7338E0047635B /* View Controllers */,
-				BBC3295D23C82EDE004922B8 /* GoogleService-Info.plist */,
 			);
-			path = Imagear;
+			path = Terrace;
 			sourceTree = "<group>";
 		};
-		BB907C7423C72058000E5B0F /* ImagearTests */ = {
+		BB907C7423C72058000E5B0F /* TerraceTests */ = {
 			isa = PBXGroup;
 			children = (
-				BB907C7523C72058000E5B0F /* ImagearTests.swift */,
+				BB907C7523C72058000E5B0F /* TerraceTests.swift */,
 				BB907C7723C72058000E5B0F /* Info.plist */,
 			);
-			path = ImagearTests;
+			path = TerraceTests;
 			sourceTree = "<group>";
 		};
-		BB907C7F23C72059000E5B0F /* ImagearUITests */ = {
+		BB907C7F23C72059000E5B0F /* TerraceUITests */ = {
 			isa = PBXGroup;
 			children = (
-				BB907C8023C72059000E5B0F /* ImagearUITests.swift */,
+				BB907C8023C72059000E5B0F /* TerraceUITests.swift */,
 				BB907C8223C72059000E5B0F /* Info.plist */,
 			);
-			path = ImagearUITests;
+			path = TerraceUITests;
 			sourceTree = "<group>";
 		};
 		BBCB259623C733790047635B /* Bridging */ = {
@@ -197,8 +205,8 @@
 		FEB5FFF51DD89370BE64FD0A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				861415B88FDEB546460ABDEE /* Pods_Imagear.framework */,
-				42AE4F75F02ACC09AA95E60A /* Pods_ImagearTests.framework */,
+				083C4E32353D7CD933176249 /* Pods_Terrace.framework */,
+				1C528412A3FB299C4A30A086 /* Pods_TerraceTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -206,9 +214,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BB907C5A23C72058000E5B0F /* Imagear */ = {
+		BB907C5A23C72058000E5B0F /* Terrace */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BB907C8523C72059000E5B0F /* Build configuration list for PBXNativeTarget "Imagear" */;
+			buildConfigurationList = BB907C8523C72059000E5B0F /* Build configuration list for PBXNativeTarget "Terrace" */;
 			buildPhases = (
 				BA1B2443321BD80B99958BD5 /* [CP] Check Pods Manifest.lock */,
 				BBC3295F23C83366004922B8 /* ShellScript */,
@@ -222,14 +230,14 @@
 			);
 			dependencies = (
 			);
-			name = Imagear;
+			name = Terrace;
 			productName = imagear;
-			productReference = BB907C5B23C72058000E5B0F /* Imagear.app */;
+			productReference = BB907C5B23C72058000E5B0F /* Terrace.app */;
 			productType = "com.apple.product-type.application";
 		};
-		BB907C7023C72058000E5B0F /* ImagearTests */ = {
+		BB907C7023C72058000E5B0F /* TerraceTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BB907C8823C72059000E5B0F /* Build configuration list for PBXNativeTarget "ImagearTests" */;
+			buildConfigurationList = BB907C8823C72059000E5B0F /* Build configuration list for PBXNativeTarget "TerraceTests" */;
 			buildPhases = (
 				940EDF91CC72D2660916F639 /* [CP] Check Pods Manifest.lock */,
 				BB907C6D23C72058000E5B0F /* Sources */,
@@ -241,14 +249,14 @@
 			dependencies = (
 				BB907C7323C72058000E5B0F /* PBXTargetDependency */,
 			);
-			name = ImagearTests;
+			name = TerraceTests;
 			productName = imagearTests;
-			productReference = BB907C7123C72058000E5B0F /* ImagearTests.xctest */;
+			productReference = BB907C7123C72058000E5B0F /* TerraceTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		BB907C7B23C72059000E5B0F /* ImagearUITests */ = {
+		BB907C7B23C72059000E5B0F /* TerraceUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BB907C8B23C72059000E5B0F /* Build configuration list for PBXNativeTarget "ImagearUITests" */;
+			buildConfigurationList = BB907C8B23C72059000E5B0F /* Build configuration list for PBXNativeTarget "TerraceUITests" */;
 			buildPhases = (
 				BB907C7823C72059000E5B0F /* Sources */,
 				BB907C7923C72059000E5B0F /* Frameworks */,
@@ -259,9 +267,9 @@
 			dependencies = (
 				BB907C7E23C72059000E5B0F /* PBXTargetDependency */,
 			);
-			name = ImagearUITests;
+			name = TerraceUITests;
 			productName = imagearUITests;
-			productReference = BB907C7C23C72059000E5B0F /* ImagearUITests.xctest */;
+			productReference = BB907C7C23C72059000E5B0F /* TerraceUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -288,7 +296,7 @@
 					};
 				};
 			};
-			buildConfigurationList = BB907C5623C72058000E5B0F /* Build configuration list for PBXProject "Imagear" */;
+			buildConfigurationList = BB907C5623C72058000E5B0F /* Build configuration list for PBXProject "Terrace" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -301,9 +309,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BB907C5A23C72058000E5B0F /* Imagear */,
-				BB907C7023C72058000E5B0F /* ImagearTests */,
-				BB907C7B23C72059000E5B0F /* ImagearUITests */,
+				BB907C5A23C72058000E5B0F /* Terrace */,
+				BB907C7023C72058000E5B0F /* TerraceTests */,
+				BB907C7B23C72059000E5B0F /* TerraceUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -314,7 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB907C6B23C72058000E5B0F /* LaunchScreen.storyboard in Resources */,
-				BBC3295E23C82EDE004922B8 /* GoogleService-Info.plist in Resources */,
+				BB2814A423C862DD000FBCBE /* GoogleService-Info.plist in Resources */,
 				BB907C6823C72058000E5B0F /* Assets.xcassets in Resources */,
 				BB907C6623C72058000E5B0F /* MainViewController.storyboard in Resources */,
 			);
@@ -343,15 +351,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Imagear/Pods-Imagear-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Terrace/Pods-Terrace-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Imagear/Pods-Imagear-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Terrace/Pods-Terrace-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Imagear/Pods-Imagear-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Terrace/Pods-Terrace-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		940EDF91CC72D2660916F639 /* [CP] Check Pods Manifest.lock */ = {
@@ -369,7 +377,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ImagearTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-TerraceTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -391,7 +399,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Imagear-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Terrace-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -411,7 +419,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -453,7 +461,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB907C7623C72058000E5B0F /* ImagearTests.swift in Sources */,
+				BB907C7623C72058000E5B0F /* TerraceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,7 +469,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB907C8123C72059000E5B0F /* ImagearUITests.swift in Sources */,
+				BB907C8123C72059000E5B0F /* TerraceUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,12 +478,12 @@
 /* Begin PBXTargetDependency section */
 		BB907C7323C72058000E5B0F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BB907C5A23C72058000E5B0F /* Imagear */;
+			target = BB907C5A23C72058000E5B0F /* Terrace */;
 			targetProxy = BB907C7223C72058000E5B0F /* PBXContainerItemProxy */;
 		};
 		BB907C7E23C72059000E5B0F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BB907C5A23C72058000E5B0F /* Imagear */;
+			target = BB907C5A23C72058000E5B0F /* Terrace */;
 			targetProxy = BB907C7D23C72059000E5B0F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -616,7 +624,7 @@
 		};
 		BB907C8623C72059000E5B0F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F7B7B61B3969AD3F35F127AA /* Pods-Imagear.debug.xcconfig */;
+			baseConfigurationReference = 0C7C2D027F516D8E0933591E /* Pods-Terrace.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -628,16 +636,16 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = imagear/Config/Info.plist;
+				INFOPLIST_FILE = Terrace/Config/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.maelabs.imagear.imagear;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maelabs.terrace.terrace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "imagear/Bridging/imagear-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Terrace/Bridging/imagear-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -647,7 +655,7 @@
 		};
 		BB907C8723C72059000E5B0F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7A303FD47A72AFBC90CC086D /* Pods-Imagear.release.xcconfig */;
+			baseConfigurationReference = DBB0ED0608D5134FF8FA8188 /* Pods-Terrace.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -659,16 +667,16 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = imagear/Config/Info.plist;
+				INFOPLIST_FILE = Terrace/Config/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.maelabs.imagear.imagear;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maelabs.terrace.terrace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "imagear/Bridging/imagear-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Terrace/Bridging/imagear-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -677,7 +685,7 @@
 		};
 		BB907C8923C72059000E5B0F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DC19405CA0FE6C0EC6A4780C /* Pods-ImagearTests.debug.xcconfig */;
+			baseConfigurationReference = 6B165F8B1E172959B4B2E98F /* Pods-TerraceTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -693,13 +701,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Imagear.app/Imagear";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Terrace.app/Terrace";
 			};
 			name = Debug;
 		};
 		BB907C8A23C72059000E5B0F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2755AC4281A405E605C57512 /* Pods-ImagearTests.release.xcconfig */;
+			baseConfigurationReference = 0420D65EC4D5F92B0BAD66FF /* Pods-TerraceTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -715,7 +723,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Imagear.app/Imagear";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Terrace.app/Terrace";
 			};
 			name = Release;
 		};
@@ -760,7 +768,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BB907C5623C72058000E5B0F /* Build configuration list for PBXProject "Imagear" */ = {
+		BB907C5623C72058000E5B0F /* Build configuration list for PBXProject "Terrace" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BB907C8323C72059000E5B0F /* Debug */,
@@ -769,7 +777,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BB907C8523C72059000E5B0F /* Build configuration list for PBXNativeTarget "Imagear" */ = {
+		BB907C8523C72059000E5B0F /* Build configuration list for PBXNativeTarget "Terrace" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BB907C8623C72059000E5B0F /* Debug */,
@@ -778,7 +786,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BB907C8823C72059000E5B0F /* Build configuration list for PBXNativeTarget "ImagearTests" */ = {
+		BB907C8823C72059000E5B0F /* Build configuration list for PBXNativeTarget "TerraceTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BB907C8923C72059000E5B0F /* Debug */,
@@ -787,7 +795,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BB907C8B23C72059000E5B0F /* Build configuration list for PBXNativeTarget "ImagearUITests" */ = {
+		BB907C8B23C72059000E5B0F /* Build configuration list for PBXNativeTarget "TerraceUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BB907C8C23C72059000E5B0F /* Debug */,
