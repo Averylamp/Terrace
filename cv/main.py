@@ -1,5 +1,9 @@
 """
 Python playground for image effects.
+
+Example usage:
+cd cv
+python main.py --path inputs/KDWm2mJrR7s_25100000/
 """
 
 import cv2
@@ -7,6 +11,22 @@ import argparse
 import sys
 import os
 import numpy as np
+
+
+def get_scaled_to_max_image(image):
+    max_value = image.max()
+    scalar = 255.0 / max_value
+    return (image * scalar).astype("uint8")
+
+
+def get_three_channel_image_from_one_channel(image):
+    assert len(image.shape) == 2
+    w, h = image.shape
+    three_channel_image = np.zeros((w, h, 3))
+    three_channel_image[:, :, 0] = image
+    three_channel_image[:, :, 1] = image
+    three_channel_image[:, :, 2] = image
+    return three_channel_image.astype("uint8")
 
 
 class Effector(object):
@@ -27,13 +47,14 @@ class Effector(object):
     def __init__(self, path, effect):
         self.path = path
         self.effect = effect
-        
+
         # cv2 image to be loaded.
         self.bgr = None
         self.masks = None
         self.depth = None
         # name of gui window
         self.window_name = "main window"
+        self.window_image = None
 
         # Make sure that the specified effect is valid.
         if self.effect not in self.effects:
@@ -62,7 +83,16 @@ class Effector(object):
         """
         # TODO: load image(s), create window
         cv2.namedWindow(self.window_name)
-        cv2.imshow(self.window_name, self.bgr)
+        rgb_image = self.bgr
+        masks_image = get_scaled_to_max_image(
+            get_three_channel_image_from_one_channel(self.masks)
+        )
+        visible_depth_image = get_three_channel_image_from_one_channel(
+            get_scaled_to_max_image(self.depth)
+        )
+        self.window_image = np.hstack(
+            [rgb_image, masks_image, visible_depth_image])
+        cv2.imshow(self.window_name, self.window_image)
         cv2.waitKey(0)
 
 
