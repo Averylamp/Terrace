@@ -17,8 +17,6 @@ final class AppDelegate: UIResponder {
 
 extension AppDelegate: UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
@@ -29,7 +27,6 @@ extension AppDelegate: UIApplicationDelegate {
         let controller = UIViewController()
         window?.rootViewController = controller
         window?.makeKeyAndVisible()
-        
 
         return true
     }
@@ -48,6 +45,4 @@ extension AppDelegate: UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-
 }
-

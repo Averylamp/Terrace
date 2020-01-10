@@ -13,9 +13,10 @@
 		BB907C6623C72058000E5B0F /* MainViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB907C6423C72058000E5B0F /* MainViewController.storyboard */; };
 		BB907C6823C72058000E5B0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB907C6723C72058000E5B0F /* Assets.xcassets */; };
 		BB907C6B23C72058000E5B0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB907C6923C72058000E5B0F /* LaunchScreen.storyboard */; };
-		BB907C7623C72058000E5B0F /* imagearTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB907C7523C72058000E5B0F /* imagearTests.swift */; };
-		BB907C8123C72059000E5B0F /* imagearUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB907C8023C72059000E5B0F /* imagearUITests.swift */; };
+		BB907C7623C72058000E5B0F /* ImagearTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB907C7523C72058000E5B0F /* ImagearTests.swift */; };
+		BB907C8123C72059000E5B0F /* ImagearUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB907C8023C72059000E5B0F /* ImagearUITests.swift */; };
 		BBC3295E23C82EDE004922B8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBC3295D23C82EDE004922B8 /* GoogleService-Info.plist */; };
+		BBC3296123C833DA004922B8 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC3296023C833DA004922B8 /* R.generated.swift */; };
 		BBCB259C23C733BA0047635B /* MAECVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = BBCB259B23C733BA0047635B /* MAECVWrapper.mm */; };
 		BBCB259E23C734160047635B /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCB259D23C734160047635B /* opencv2.framework */; };
 		C0748088275049A8E38E5CD0 /* Pods_Imagear.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 861415B88FDEB546460ABDEE /* Pods_Imagear.framework */; };
@@ -53,12 +54,13 @@
 		BB907C6A23C72058000E5B0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB907C6C23C72058000E5B0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB907C7123C72058000E5B0F /* ImagearTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImagearTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB907C7523C72058000E5B0F /* imagearTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imagearTests.swift; sourceTree = "<group>"; };
+		BB907C7523C72058000E5B0F /* ImagearTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagearTests.swift; sourceTree = "<group>"; };
 		BB907C7723C72058000E5B0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB907C7C23C72059000E5B0F /* ImagearUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImagearUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB907C8023C72059000E5B0F /* imagearUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imagearUITests.swift; sourceTree = "<group>"; };
+		BB907C8023C72059000E5B0F /* ImagearUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagearUITests.swift; sourceTree = "<group>"; };
 		BB907C8223C72059000E5B0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BBC3295D23C82EDE004922B8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BBC3296023C833DA004922B8 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		BBCB259923C733BA0047635B /* imagear-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "imagear-Bridging-Header.h"; sourceTree = "<group>"; };
 		BBCB259A23C733BA0047635B /* MAECVWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAECVWrapper.h; sourceTree = "<group>"; };
 		BBCB259B23C733BA0047635B /* MAECVWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MAECVWrapper.mm; sourceTree = "<group>"; };
@@ -111,9 +113,9 @@
 			isa = PBXGroup;
 			children = (
 				BBCB259D23C734160047635B /* opencv2.framework */,
-				BB907C5D23C72058000E5B0F /* imagear */,
-				BB907C7423C72058000E5B0F /* imagearTests */,
-				BB907C7F23C72059000E5B0F /* imagearUITests */,
+				BB907C5D23C72058000E5B0F /* Imagear */,
+				BB907C7423C72058000E5B0F /* ImagearTests */,
+				BB907C7F23C72059000E5B0F /* ImagearUITests */,
 				BB907C5C23C72058000E5B0F /* Products */,
 				4EB56C0C381C80A531F92409 /* Pods */,
 				FEB5FFF51DD89370BE64FD0A /* Frameworks */,
@@ -130,7 +132,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BB907C5D23C72058000E5B0F /* imagear */ = {
+		BB907C5D23C72058000E5B0F /* Imagear */ = {
 			isa = PBXGroup;
 			children = (
 				BBCB259823C7339C0047635B /* Config */,
@@ -138,25 +140,25 @@
 				BBCB259723C7338E0047635B /* View Controllers */,
 				BBC3295D23C82EDE004922B8 /* GoogleService-Info.plist */,
 			);
-			path = imagear;
+			path = Imagear;
 			sourceTree = "<group>";
 		};
-		BB907C7423C72058000E5B0F /* imagearTests */ = {
+		BB907C7423C72058000E5B0F /* ImagearTests */ = {
 			isa = PBXGroup;
 			children = (
-				BB907C7523C72058000E5B0F /* imagearTests.swift */,
+				BB907C7523C72058000E5B0F /* ImagearTests.swift */,
 				BB907C7723C72058000E5B0F /* Info.plist */,
 			);
-			path = imagearTests;
+			path = ImagearTests;
 			sourceTree = "<group>";
 		};
-		BB907C7F23C72059000E5B0F /* imagearUITests */ = {
+		BB907C7F23C72059000E5B0F /* ImagearUITests */ = {
 			isa = PBXGroup;
 			children = (
-				BB907C8023C72059000E5B0F /* imagearUITests.swift */,
+				BB907C8023C72059000E5B0F /* ImagearUITests.swift */,
 				BB907C8223C72059000E5B0F /* Info.plist */,
 			);
-			path = imagearUITests;
+			path = ImagearUITests;
 			sourceTree = "<group>";
 		};
 		BBCB259623C733790047635B /* Bridging */ = {
@@ -182,6 +184,7 @@
 		BBCB259823C7339C0047635B /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				BBC3296023C833DA004922B8 /* R.generated.swift */,
 				BB907C6C23C72058000E5B0F /* Info.plist */,
 				BB907C5E23C72058000E5B0F /* AppDelegate.swift */,
 				BB907C6023C72058000E5B0F /* SceneDelegate.swift */,
@@ -208,9 +211,11 @@
 			buildConfigurationList = BB907C8523C72059000E5B0F /* Build configuration list for PBXNativeTarget "Imagear" */;
 			buildPhases = (
 				BA1B2443321BD80B99958BD5 /* [CP] Check Pods Manifest.lock */,
+				BBC3295F23C83366004922B8 /* ShellScript */,
 				BB907C5723C72058000E5B0F /* Sources */,
 				BB907C5823C72058000E5B0F /* Frameworks */,
 				BB907C5923C72058000E5B0F /* Resources */,
+				BBC3296223C83432004922B8 /* ShellScript */,
 				2281D0D6D1F13A3D70531D22 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -393,6 +398,42 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		BBC3295F23C83366004922B8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
+		BBC3296223C83432004922B8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint autocorrect .\nswiftlint lint .\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -402,6 +443,7 @@
 			files = (
 				BB907C6323C72058000E5B0F /* MainViewController.swift in Sources */,
 				BB907C5F23C72058000E5B0F /* AppDelegate.swift in Sources */,
+				BBC3296123C833DA004922B8 /* R.generated.swift in Sources */,
 				BBCB259C23C733BA0047635B /* MAECVWrapper.mm in Sources */,
 				BB907C6123C72058000E5B0F /* SceneDelegate.swift in Sources */,
 			);
@@ -411,7 +453,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB907C7623C72058000E5B0F /* imagearTests.swift in Sources */,
+				BB907C7623C72058000E5B0F /* ImagearTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,7 +461,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB907C8123C72059000E5B0F /* imagearUITests.swift in Sources */,
+				BB907C8123C72059000E5B0F /* ImagearUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

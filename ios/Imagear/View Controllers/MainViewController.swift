@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class ViewController: UIViewController {
     
     class func instantiate() -> ViewController? {
@@ -20,14 +19,12 @@ class ViewController: UIViewController {
     }
 }
 
-
 class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         print(MAECVWrapper.openCVVersionString())
-        
         
     }
 
@@ -41,11 +38,9 @@ class MainViewController: UIViewController {
     
 }
 
-
-
 extension MainViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         
     }
     
