@@ -33,4 +33,10 @@ python -m ipykernel install --user --display-name "imagear"
 ```
 #TODO(ethan): check this out
 https://www.raywenderlich.com/5999357-video-depth-maps-tutorial-for-ios-getting-started
+
+data_science/3d-ken-burns
+git@github.com:sniklaus/3d-ken-burns.git
+
+data_science/mannequinchallenge
+git@github.com:google/mannequinchallenge.git
 ```

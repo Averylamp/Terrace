@@ -5,6 +5,8 @@ Python playground for image effects.
 import cv2
 import argparse
 import sys
+import os
+import numpy as np
 
 
 class Effector(object):
@@ -27,7 +29,9 @@ class Effector(object):
         self.effect = effect
         
         # cv2 image to be loaded.
-        self.image = None
+        self.bgr = None
+        self.masks = None
+        self.depth = None
         # name of gui window
         self.window_name = "main window"
 
@@ -35,12 +39,31 @@ class Effector(object):
         if self.effect not in self.effects:
             raise AssertionError("{} not a valid effect.".format(self.effect))
 
+        self.load_data()
+        self.start_gui()
+
+    def load_data(self):
+        """
+        Load data.
+        """
+        self.bgr = cv2.imread(
+            os.path.join(self.path, "rgb.png")
+        )
+        self.masks = np.load(
+            os.path.join(self.path, "masks.npy")
+        )
+        self.depth = np.load(
+            os.path.join(self.path, "depth.npy")
+        )
+
     def start_gui(self):
         """
         Load from filepath and start gui.
         """
         # TODO: load image(s), create window
-        pass
+        cv2.namedWindow(self.window_name)
+        cv2.imshow(self.window_name, self.bgr)
+        cv2.waitKey(0)
 
 
 if __name__ == "__main__":
