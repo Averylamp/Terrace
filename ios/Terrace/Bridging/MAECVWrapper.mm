@@ -13,8 +13,8 @@
 
 
 + (NSString *)openCVVersionString {
-    
-    return [NSString stringWithFormat:@"OpenCV Version %s",  CV_VERSION];
+  
+  return [NSString stringWithFormat:@"OpenCV Version %s",  CV_VERSION];
 }
 
 @end

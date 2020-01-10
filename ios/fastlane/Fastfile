@@ -22,7 +22,7 @@ platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
     increment_build_number
-    build_app(workspace: "Terrace.xcworkspace", scheme: "Development")
+    build_app(workspace: "Terrace.xcworkspace", scheme: "Terrace")
     upload_to_testflight
     slack(
       slack_url: "https://hooks.slack.com/services/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",

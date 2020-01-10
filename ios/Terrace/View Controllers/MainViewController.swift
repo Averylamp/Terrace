@@ -9,39 +9,41 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    class func instantiate() -> ViewController? {
-//        let storyboard = UIStoryboard(name: String(describing: ViewController.self),
-//                                      bundle: nil)
-//        guard let mainVC = storyboard.instant
-//        return mainVC
-        return nil
+  
+  class func instantiate() -> MainViewController? {
+    let vcName = String(describing: MainViewController.self)
+    let storyboard = R.storyboard.mainViewController
+    guard let vc = storyboard.instantiateInitialViewController() else {
+      fatalError("Unable to instantiate \(vcName)")
     }
+    return vc
+  }
+  
 }
 
 class MainViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        print(MAECVWrapper.openCVVersionString())
-
-    }
-
-    @IBAction func clickedLibraryButton(_ sender: UIButton) {
-        let pickerController = UIImagePickerController()
-        pickerController.delegate  = self
-        pickerController.sourceType = .photoLibrary
-        self.present(pickerController, animated: true, completion: nil)
-
-    }
-
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    // Do any additional setup after loading the view.
+    print(MAECVWrapper.openCVVersionString())
+    
+  }
+  
+  @IBAction func clickedLibraryButton(_ sender: UIButton) {
+    let pickerController = UIImagePickerController()
+    pickerController.delegate  = self
+    pickerController.sourceType = .photoLibrary
+    self.present(pickerController, animated: true, completion: nil)
+    
+  }
+  
 }
 
 extension MainViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-
-    }
-
+  
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+    
+  }
+  
 }
