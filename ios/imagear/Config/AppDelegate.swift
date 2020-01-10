@@ -7,14 +7,30 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+final class AppDelegate: UIResponder {
+  
+  var window: UIWindow?
+}
+
+extension AppDelegate: UIApplicationDelegate {
 
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FirebaseApp.configure()
+        window = UIWindow(frame: UIScreen.main.bounds)
+//        guard let controller = MainViewController.instantiate() else {
+//          fatalError("Something went horribly wrong")
+//        }
+        let controller = UIViewController()
+        window?.rootViewController = controller
+        window?.makeKeyAndVisible()
+        
+
         return true
     }
 

@@ -1,0 +1,22 @@
+target 'Imagear' do
+  platform :ios, '11.0'
+  use_frameworks!
+  
+  pod 'Firebase/Core'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Performance'
+  pod 'Firebase/RemoteConfig'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/DynamicLinks'
+  pod 'SDWebImage'
+  pod 'SwiftyJSON'
+  pod 'NVActivityIndicatorView'
+  pod 'SwiftLint'
+  pod 'R.swift'
+
+  target 'ImagearTests' do
+    inherit! :search_paths
+  end
+
+end
