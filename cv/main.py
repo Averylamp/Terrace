@@ -25,6 +25,11 @@ class Effector(object):
     def __init__(self, path, effect):
         self.path = path
         self.effect = effect
+        
+        # cv2 image to be loaded.
+        self.image = None
+        # name of gui window
+        self.window_name = "main window"
 
         # Make sure that the specified effect is valid.
         if self.effect not in self.effects:
@@ -34,6 +39,7 @@ class Effector(object):
         """
         Load from filepath and start gui.
         """
+        # TODO: load image(s), create window
         pass
 
 
