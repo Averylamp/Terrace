@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+
     class func instantiate() -> ViewController? {
 //        let storyboard = UIStoryboard(name: String(describing: ViewController.self),
 //                                      bundle: nil)
@@ -25,7 +25,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         print(MAECVWrapper.openCVVersionString())
-        
+
     }
 
     @IBAction func clickedLibraryButton(_ sender: UIButton) {
@@ -33,15 +33,15 @@ class MainViewController: UIViewController {
         pickerController.delegate  = self
         pickerController.sourceType = .photoLibrary
         self.present(pickerController, animated: true, completion: nil)
-        
+
     }
-    
+
 }
 
 extension MainViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        
+
     }
-    
+
 }

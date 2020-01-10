@@ -11,7 +11,7 @@ import Firebase
 
 @UIApplicationMain
 final class AppDelegate: UIResponder {
-  
+
   var window: UIWindow?
 }
 
