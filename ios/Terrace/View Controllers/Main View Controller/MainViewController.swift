@@ -8,27 +8,45 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
   
+  /// Factory method for creating this view controller.
+  ///
+  /// - Returns: Returns an instance of this view controller.
   class func instantiate() -> MainViewController? {
     let vcName = String(describing: MainViewController.self)
     let storyboard = R.storyboard.mainViewController
-    guard let vc = storyboard.instantiateInitialViewController() else {
+    guard let vcMain = storyboard.instantiateInitialViewController() else {
       fatalError("Unable to instantiate \(vcName)")
     }
-    return vc
+    return vcMain
   }
   
 }
 
-class MainViewController: UIViewController {
+// MARK: Life Cycle
+extension  MainViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view.
-    print(MAECVWrapper.openCVVersionString())
+    self.setup()
+    self.stylize()
+  }
+  
+  /// Setup should only be called once
+  func setup() {
     
   }
+  
+  /// Stylize should only be called once
+  func stylize() {
+    
+  }
+  
+}
+
+// MARK: IBActions
+extension MainViewController {
   
   @IBAction func clickedLibraryButton(_ sender: UIButton) {
     let pickerController = UIImagePickerController()
@@ -43,6 +61,8 @@ class MainViewController: UIViewController {
 extension MainViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+    
+    picker.dismiss(animated: true, completion: nil)
     
   }
   
