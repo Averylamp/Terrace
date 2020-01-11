@@ -21,3 +21,22 @@ pip install -r requirements.txt
 # install Kernel to use with notebooks
 python -m ipykernel install --user --display-name "imagear"
 ```
+
+# Notes
+
+- find good rgb / depth pair to test with
+- with known segmentation masks for ken burns effect
+- then create segmentation mask with tool
+
+# Resources
+
+```
+#TODO(ethan): check this out
+https://www.raywenderlich.com/5999357-video-depth-maps-tutorial-for-ios-getting-started
+
+data_science/3d-ken-burns
+git@github.com:sniklaus/3d-ken-burns.git
+
+data_science/mannequinchallenge
+git@github.com:google/mannequinchallenge.git
+```
