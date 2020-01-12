@@ -1,5 +1,5 @@
 //
-//  PHImagePickerNavigationViewController.swift
+//  PHImagePickerViewController.swift
 //  Terrace
 //
 //  Created by Avery Lamp on 1/12/20.
@@ -8,24 +8,27 @@
 
 import UIKit
 
-class PHImagePickerNavigationViewController: UINavigationController {
+class PHImagePickerViewController: UIViewController {
+  
+  weak var pickerDelegate: PHImagePickerDelegate?
   
   /// Factory method for creating this view controller.
   ///
   /// - Returns: Returns an instance of this view controller.
-  class func instantiate() -> PHImagePickerNavigationViewController? {
-    let vcName = String(describing: PHImagePickerNavigationViewController.self)
-    let storyboard = R.storyboard.phImagePickerNavigationViewController
-    guard let phImagePickerNavVC = storyboard.instantiateInitialViewController() else {
+  class func instantiate(delegate: PHImagePickerDelegate? = nil) -> PHImagePickerViewController? {
+    let vcName = String(describing: PHImagePickerViewController.self)
+    let storyboard = R.storyboard.phImagePickerViewController
+    guard let vcPHImagePicker = storyboard.instantiateInitialViewController() else {
       fatalError("Unable to instantiate \(vcName)")
     }
-    return phImagePickerNavVC
+    vcPHImagePicker.pickerDelegate = delegate
+    return vcPHImagePicker
   }
   
 }
 
 // MARK: Life Cycle
-extension  PHImagePickerNavigationViewController {
+extension  PHImagePickerViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
