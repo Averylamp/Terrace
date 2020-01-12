@@ -10,7 +10,11 @@ import UIKit
 
 class PHPhotoPickerAlbumTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
+  @IBOutlet weak var albumNameLabel: UILabel!
+  @IBOutlet weak var subtitleLabel: UILabel!
+  @IBOutlet weak var thumbnailImageView: UIImageView!
+  
+  override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
@@ -20,5 +24,14 @@ class PHPhotoPickerAlbumTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+  
+  func configure(albumItem: AlbumItem) {
+    self.albumNameLabel.text = albumItem.albumResult.localizedTitle ?? albumItem.name
+    self.subtitleLabel.text = "\(albumItem.count)"
+    let sizeScaled = self.thumbnailImageView.frame.size.width * UIScreen.main.scale
+    print(sizeScaled)
+    self.thumbnailImageView.image = PhotosHelper.lastImageFromCollection(albumItem.albumResult,
+                                                                         size: CGSize(width: sizeScaled, height: sizeScaled) )
+  }
 
 }

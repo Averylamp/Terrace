@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 class PHImagePickerViewController: UIViewController {
   
@@ -15,7 +16,7 @@ class PHImagePickerViewController: UIViewController {
   /// Factory method for creating this view controller.
   ///
   /// - Returns: Returns an instance of this view controller.
-  class func instantiate(delegate: PHImagePickerDelegate? = nil) -> PHImagePickerViewController? {
+  class func instantiate(delegate: PHImagePickerDelegate? = nil, photosCollection: PHAssetCollection) -> PHImagePickerViewController? {
     let vcName = String(describing: PHImagePickerViewController.self)
     let storyboard = R.storyboard.phImagePickerViewController
     guard let vcPHImagePicker = storyboard.instantiateInitialViewController() else {
