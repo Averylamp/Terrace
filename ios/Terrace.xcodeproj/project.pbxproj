@@ -10,6 +10,12 @@
 		631B341DC2CC5A838ADE441C /* Pods_TerraceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C528412A3FB299C4A30A086 /* Pods_TerraceTests.framework */; };
 		7DD06A689F88BA82BDE5BBE9 /* Pods_Terrace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 083C4E32353D7CD933176249 /* Pods_Terrace.framework */; };
 		BB2814A423C862DD000FBCBE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2814A323C862DD000FBCBE /* GoogleService-Info.plist */; };
+		BB60120723CAF9B000794BE4 /* PHImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB60120623CAF9B000794BE4 /* PHImagePickerViewController.swift */; };
+		BB60120923CAF9BC00794BE4 /* PHImagePickerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB60120823CAF9BC00794BE4 /* PHImagePickerViewController.storyboard */; };
+		BB60120B23CAFAC100794BE4 /* PHImagePickerAlbumListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB60120A23CAFAC100794BE4 /* PHImagePickerAlbumListViewController.swift */; };
+		BB60120D23CAFAC500794BE4 /* PHImagePickerAlbumListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB60120C23CAFAC500794BE4 /* PHImagePickerAlbumListViewController.storyboard */; };
+		BB60120F23CAFB6C00794BE4 /* PHImagePickerNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB60120E23CAFB6C00794BE4 /* PHImagePickerNavigationViewController.swift */; };
+		BB60121123CAFB7200794BE4 /* PHImagePickerNavigationViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB60121023CAFB7200794BE4 /* PHImagePickerNavigationViewController.storyboard */; };
 		BB80ED2E23C8A2940000987D /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB80ED2D23C8A2940000987D /* MainNavigationController.swift */; };
 		BB80ED3123C8A2A90000987D /* MainNavigationController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB80ED3023C8A2A90000987D /* MainNavigationController.storyboard */; };
 		BB907C5F23C72058000E5B0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB907C5E23C72058000E5B0F /* AppDelegate.swift */; };
@@ -51,6 +57,12 @@
 		6B165F8B1E172959B4B2E98F /* Pods-TerraceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TerraceTests.debug.xcconfig"; path = "Target Support Files/Pods-TerraceTests/Pods-TerraceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7A303FD47A72AFBC90CC086D /* Pods-Imagear.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagear.release.xcconfig"; path = "Target Support Files/Pods-Imagear/Pods-Imagear.release.xcconfig"; sourceTree = "<group>"; };
 		BB2814A323C862DD000FBCBE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BB60120623CAF9B000794BE4 /* PHImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHImagePickerViewController.swift; sourceTree = "<group>"; };
+		BB60120823CAF9BC00794BE4 /* PHImagePickerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PHImagePickerViewController.storyboard; sourceTree = "<group>"; };
+		BB60120A23CAFAC100794BE4 /* PHImagePickerAlbumListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHImagePickerAlbumListViewController.swift; sourceTree = "<group>"; };
+		BB60120C23CAFAC500794BE4 /* PHImagePickerAlbumListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PHImagePickerAlbumListViewController.storyboard; sourceTree = "<group>"; };
+		BB60120E23CAFB6C00794BE4 /* PHImagePickerNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHImagePickerNavigationViewController.swift; sourceTree = "<group>"; };
+		BB60121023CAFB7200794BE4 /* PHImagePickerNavigationViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PHImagePickerNavigationViewController.storyboard; sourceTree = "<group>"; };
 		BB80ED2D23C8A2940000987D /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		BB80ED3023C8A2A90000987D /* MainNavigationController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainNavigationController.storyboard; sourceTree = "<group>"; };
 		BB907C5B23C72058000E5B0F /* Terrace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Terrace.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,6 +131,19 @@
 				0420D65EC4D5F92B0BAD66FF /* Pods-TerraceTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		BB60120523CAF91900794BE4 /* Image Picker */ = {
+			isa = PBXGroup;
+			children = (
+				BB60120623CAF9B000794BE4 /* PHImagePickerViewController.swift */,
+				BB60120823CAF9BC00794BE4 /* PHImagePickerViewController.storyboard */,
+				BB60120A23CAFAC100794BE4 /* PHImagePickerAlbumListViewController.swift */,
+				BB60120C23CAFAC500794BE4 /* PHImagePickerAlbumListViewController.storyboard */,
+				BB60120E23CAFB6C00794BE4 /* PHImagePickerNavigationViewController.swift */,
+				BB60121023CAFB7200794BE4 /* PHImagePickerNavigationViewController.storyboard */,
+			);
+			path = "Image Picker";
 			sourceTree = "<group>";
 		};
 		BB80ED2B23C8A2570000987D /* Main View Controller */ = {
@@ -213,6 +238,7 @@
 		BBCB259723C7338E0047635B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				BB60120523CAF91900794BE4 /* Image Picker */,
 				BB80ED2C23C8A2610000987D /* Main Navigation */,
 				BB80ED2B23C8A2570000987D /* Main View Controller */,
 			);
@@ -352,10 +378,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB80ED3123C8A2A90000987D /* MainNavigationController.storyboard in Resources */,
+				BB60120D23CAFAC500794BE4 /* PHImagePickerAlbumListViewController.storyboard in Resources */,
 				BB907C6B23C72058000E5B0F /* LaunchScreen.storyboard in Resources */,
 				BB2814A423C862DD000FBCBE /* GoogleService-Info.plist in Resources */,
+				BB60120923CAF9BC00794BE4 /* PHImagePickerViewController.storyboard in Resources */,
 				BB907C6823C72058000E5B0F /* Assets.xcassets in Resources */,
 				BB907C6623C72058000E5B0F /* MainViewController.storyboard in Resources */,
+				BB60121123CAFB7200794BE4 /* PHImagePickerNavigationViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,9 +511,12 @@
 			files = (
 				BB907C6323C72058000E5B0F /* MainViewController.swift in Sources */,
 				BB80ED2E23C8A2940000987D /* MainNavigationController.swift in Sources */,
+				BB60120B23CAFAC100794BE4 /* PHImagePickerAlbumListViewController.swift in Sources */,
 				BB907C5F23C72058000E5B0F /* AppDelegate.swift in Sources */,
 				BBC3296123C833DA004922B8 /* R.generated.swift in Sources */,
+				BB60120F23CAFB6C00794BE4 /* PHImagePickerNavigationViewController.swift in Sources */,
 				BBCB259C23C733BA0047635B /* MAECVWrapper.mm in Sources */,
+				BB60120723CAF9B000794BE4 /* PHImagePickerViewController.swift in Sources */,
 				BB907C6123C72058000E5B0F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

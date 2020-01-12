@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 class MainViewController: UIViewController {
   
@@ -61,6 +62,38 @@ extension MainViewController {
 extension MainViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+    
+//    let image = info[.originalImage]
+//    let url = info[.imageURL]
+//    print("url=", url)
+//
+//    guard let source = CGImageSourceCreateWithURL(url as! CFURL, nil) else {
+//      return
+//    }
+//
+//    guard let auxDataInfo = CGImageSourceCopyAuxiliaryDataInfoAtIndex(source, 0, kCGImageAuxiliaryDataTypeDisparity) as? [AnyHashable: Any] else {
+//      return
+//    }
+//
+//    print("asdfadf")
+//
+    //    var phAsset: PHAsset?
+    //    if let asset = info[.phAsset] as? PHAsset {
+    //      PHImageManager.default().requestImageData(for: asset, options: nil) { (_, _, _, phInfo) in
+    //        print("Here")
+    //
+    //        if let phAssetUTI = phInfo?["PHImageFileUTIKey"] as? String {
+    //          print("phAssetUTI: \(phAssetUTI)")
+    //        }
+    //
+    ////        guard let source = CGImageSourceCreateWithURL(url, nil) else {
+    ////          return
+    ////        }
+    ////        guard let auxDataInfo = CGImageSourceCopyAuxiliaryDataInfoAtIndex(source, 0, kCGImageAuxiliaryDataTypeDisparity) as? [AnyHashable: Any] else {
+    ////          return
+    ////        }
+    //      }
+    //    }
     
     picker.dismiss(animated: true, completion: nil)
     
