@@ -3,9 +3,13 @@ matplotlib
 jupyterlab
 ipykernel
 argparse
-open3d
 torch
 torchvision
 scikit-image
 h5py
 Pillow==6.1
+flask
+gevent
+moviepy
+cython
+open3d-python
