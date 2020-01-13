@@ -50,7 +50,7 @@ extension  MainViewController {
 extension MainViewController {
   
   @IBAction func clickedLibraryButton(_ sender: UIButton) {
-    guard let pickerController = PHImagePickerNavigationViewController.instantiate() else {
+    guard let pickerController = PHPhotoPickerNavigationViewController.instantiate() else {
       fatalError("Failed to create picker controller")
     }
     self.present(pickerController, animated: true, completion: nil)

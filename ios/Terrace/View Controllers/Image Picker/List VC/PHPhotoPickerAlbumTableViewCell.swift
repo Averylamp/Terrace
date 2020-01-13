@@ -29,7 +29,6 @@ class PHPhotoPickerAlbumTableViewCell: UITableViewCell {
     self.albumNameLabel.text = albumItem.albumResult.localizedTitle ?? albumItem.name
     self.subtitleLabel.text = "\(albumItem.count)"
     let sizeScaled = self.thumbnailImageView.frame.size.width * UIScreen.main.scale
-    print(sizeScaled)
     self.thumbnailImageView.image = PhotosHelper.lastImageFromCollection(albumItem.albumResult,
                                                                          size: CGSize(width: sizeScaled, height: sizeScaled) )
   }

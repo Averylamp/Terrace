@@ -9,19 +9,24 @@
 import UIKit
 import Photos
 
-class PHImagePickerViewController: UIViewController {
+class PHPhotoPickerCollectionViewController: UIViewController {
   
   weak var pickerDelegate: PHImagePickerDelegate?
+  
+  var photoCollectionItem: AlbumItem!
+  
+  @IBOutlet weak var imageCollectionView: UICollectionView!
   
   /// Factory method for creating this view controller.
   ///
   /// - Returns: Returns an instance of this view controller.
-  class func instantiate(delegate: PHImagePickerDelegate? = nil, photosCollection: PHAssetCollection) -> PHImagePickerViewController? {
-    let vcName = String(describing: PHImagePickerViewController.self)
-    let storyboard = R.storyboard.phImagePickerViewController
+  class func instantiate(delegate: PHImagePickerDelegate? = nil, photosCollection: AlbumItem) -> PHPhotoPickerCollectionViewController? {
+    let vcName = String(describing: PHPhotoPickerCollectionViewController.self)
+    let storyboard = R.storyboard.phPhotoPickerCollectionViewController
     guard let vcPHImagePicker = storyboard.instantiateInitialViewController() else {
       fatalError("Unable to instantiate \(vcName)")
     }
+    vcPHImagePicker.photoCollectionItem = photosCollection
     vcPHImagePicker.pickerDelegate = delegate
     return vcPHImagePicker
   }
@@ -29,7 +34,7 @@ class PHImagePickerViewController: UIViewController {
 }
 
 // MARK: Life Cycle
-extension  PHImagePickerViewController {
+extension  PHPhotoPickerCollectionViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -39,7 +44,7 @@ extension  PHImagePickerViewController {
   
   /// Setup should only be called once
   func setup() {
-    
+    self.title = self.photoCollectionItem.albumResult.localizedTitle
   }
   
   /// Stylize should only be called once

@@ -9,21 +9,21 @@
 import UIKit
 import Photos
 
-class PHImagePickerNavigationViewController: UINavigationController {
+class PHPhotoPickerNavigationViewController: UINavigationController {
   
   weak var pickerDelegate: PHImagePickerDelegate?  
   
   /// Factory method for creating this view controller.
   ///
   /// - Returns: Returns an instance of this view controller.
-  class func instantiate(delegate: PHImagePickerDelegate? = nil) -> PHImagePickerNavigationViewController? {
-    let vcName = String(describing: PHImagePickerNavigationViewController.self)
-    let storyboard = R.storyboard.phImagePickerNavigationViewController
+  class func instantiate(delegate: PHImagePickerDelegate? = nil) -> PHPhotoPickerNavigationViewController? {
+    let vcName = String(describing: PHPhotoPickerNavigationViewController.self)
+    let storyboard = R.storyboard.phPhotoPickerNavigationViewController
     guard let phImagePickerNavVC = storyboard.instantiateInitialViewController() else {
       fatalError("Unable to instantiate \(vcName)")
     }
     phImagePickerNavVC.pickerDelegate = delegate
-    guard let listVC = PHImagePickerAlbumListViewController.instantiate(delegate: delegate) else {
+    guard let listVC = PHPhotoPickerAlbumListViewController.instantiate(delegate: delegate) else {
       fatalError("Failed to instantiate album list view controlelr")
     }
     phImagePickerNavVC.setViewControllers([listVC], animated: false)
@@ -33,7 +33,7 @@ class PHImagePickerNavigationViewController: UINavigationController {
 }
 
 // MARK: Life Cycle
-extension  PHImagePickerNavigationViewController {
+extension  PHPhotoPickerNavigationViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -43,7 +43,7 @@ extension  PHImagePickerNavigationViewController {
   
   /// Setup should only be called once
   func setup() {
-    
+    self.title = "Photo Albums"
   }
   
   /// Stylize should only be called once
