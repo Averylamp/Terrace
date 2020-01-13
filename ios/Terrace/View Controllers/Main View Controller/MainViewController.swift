@@ -53,7 +53,16 @@ extension MainViewController {
     guard let pickerController = PHPhotoPickerNavigationViewController.instantiate() else {
       fatalError("Failed to create picker controller")
     }
+    pickerController.pickerDelegate = self
+    
     self.present(pickerController, animated: true, completion: nil)
   }
   
+}
+
+// MARK: PHPhotoPickerDelegate
+extension MainViewController: PHPhotoPickerDelegate {
+  func pickerDidSelectPHImage(asset: PHAsset) {
+    print("Found image")
+  }
 }

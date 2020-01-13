@@ -11,12 +11,12 @@ import Photos
 
 class PHPhotoPickerNavigationViewController: UINavigationController {
   
-  weak var pickerDelegate: PHImagePickerDelegate?  
+  weak var pickerDelegate: PHPhotoPickerDelegate?  
   
   /// Factory method for creating this view controller.
   ///
   /// - Returns: Returns an instance of this view controller.
-  class func instantiate(delegate: PHImagePickerDelegate? = nil) -> PHPhotoPickerNavigationViewController? {
+  class func instantiate(delegate: PHPhotoPickerDelegate? = nil) -> PHPhotoPickerNavigationViewController? {
     let vcName = String(describing: PHPhotoPickerNavigationViewController.self)
     let storyboard = R.storyboard.phPhotoPickerNavigationViewController
     guard let phImagePickerNavVC = storyboard.instantiateInitialViewController() else {

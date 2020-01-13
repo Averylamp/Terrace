@@ -11,15 +11,12 @@ import Photos
 
 class PHPhotoPickerCollectionViewController: UIViewController {
   
-  weak var pickerDelegate: PHImagePickerDelegate?
+  weak var pickerDelegate: PHPhotoPickerDelegate?
   
-  var assetGridThumbnailSize: CGSize = CGSize(width: 0, height: 0)
-
-  var numberPerRow: Int = 4
   var photoCollectionItem: AlbumItem!
-  let assetsInRow: CGFloat = UIDevice.current.userInterfaceIdiom == .phone ? 4 : 8
+  var assetsInRow: CGFloat = UIDevice.current.userInterfaceIdiom == .phone ? 4 : 8
   let collectionViewEdgeInset: CGFloat = 2
-
+  let flowLayout = UICollectionViewFlowLayout()
   let cachingImageManager = PHCachingImageManager()
   fileprivate var imageAssets: [PHAsset]! {
     willSet {
@@ -32,11 +29,12 @@ class PHPhotoPickerCollectionViewController: UIViewController {
   }
   
   @IBOutlet weak var imageCollectionView: UICollectionView!
+  @IBOutlet weak var numberPerRowSegmentedControl: UISegmentedControl!
   
   /// Factory method for creating this view controller.
   ///
   /// - Returns: Returns an instance of this view controller.
-  class func instantiate(delegate: PHImagePickerDelegate? = nil, photosCollection: AlbumItem) -> PHPhotoPickerCollectionViewController? {
+  class func instantiate(delegate: PHPhotoPickerDelegate? = nil, photosCollection: AlbumItem) -> PHPhotoPickerCollectionViewController? {
     let vcName = String(describing: PHPhotoPickerCollectionViewController.self)
     let storyboard = R.storyboard.phPhotoPickerCollectionViewController
     guard let vcPHImagePicker = storyboard.instantiateInitialViewController() else {
@@ -45,6 +43,10 @@ class PHPhotoPickerCollectionViewController: UIViewController {
     vcPHImagePicker.photoCollectionItem = photosCollection
     vcPHImagePicker.pickerDelegate = delegate
     return vcPHImagePicker
+  }
+  
+  @IBAction func segmentedControllerChanged(_ sender: UISegmentedControl) {
+    self.changeNumberPerRow()
   }
   
 }
@@ -69,22 +71,35 @@ extension  PHPhotoPickerCollectionViewController {
     self.imageCollectionView.delegate = self
     self.imageCollectionView.dataSource = self
     
-    let flowLayout = UICollectionViewFlowLayout()
     flowLayout.scrollDirection = UICollectionView.ScrollDirection.vertical
     
     self.imageCollectionView.collectionViewLayout = flowLayout
-    
-    let scale = UIScreen.main.scale
-    let cellSize = flowLayout.itemSize
-    self.assetGridThumbnailSize = CGSize(width: cellSize.width * scale, height: cellSize.height * scale)
-    
     self.loadCollectionData()
-    
   }
   
   /// Stylize should only be called once
   func stylize() {
     
+  }
+  
+}
+
+// MARK: IBActions
+extension PHPhotoPickerCollectionViewController {
+  
+  func changeNumberPerRow() {
+    let newNumberPerRowString = self.numberPerRowSegmentedControl.titleForSegment(at: self.numberPerRowSegmentedControl.selectedSegmentIndex)
+    guard let newNumberPerRow = Int(newNumberPerRowString ?? "unknown") else {
+      print("Unable to parse new number per row")
+      return
+    }
+    self.assetsInRow = CGFloat(newNumberPerRow)
+    
+    let firstVisibleIndex = self.imageCollectionView.visibleCells.first?.tag
+    self.loadCollectionData()
+    if let validFirstIndex = firstVisibleIndex {
+      self.imageCollectionView.scrollToItem(at: IndexPath(row: validFirstIndex, section: 0), at: .top, animated: true)
+    }
   }
   
 }
@@ -114,6 +129,9 @@ extension PHPhotoPickerCollectionViewController: UICollectionViewDataSource {
     
     let currentTag: Int = indexPath.row
     cell.tag = currentTag
+    
+    let scale = UIScreen.main.scale
+    let assetGridThumbnailSize = CGSize(width: cell.frame.size.width * scale, height: cell.frame.size.height * scale)
     self.cachingImageManager.requestImage(for: self.imageAssets[indexPath.row],
                                      targetSize: assetGridThumbnailSize,
                                      contentMode: .aspectFill,
@@ -153,6 +171,11 @@ extension PHPhotoPickerCollectionViewController: UICollectionViewDelegate {
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     print("Collection View selected item at: \(indexPath.item)")
+    let asset = self.imageAssets[indexPath.item]
+    if let delegate = self.pickerDelegate {
+      delegate.pickerDidSelectPHImage(asset: asset)
+    }
+    self.navigationController?.dismiss(animated: true, completion: nil)
   }
   
 }

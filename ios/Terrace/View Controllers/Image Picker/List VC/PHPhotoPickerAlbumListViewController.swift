@@ -22,7 +22,7 @@ struct AlbumItem {
 
 class PHPhotoPickerAlbumListViewController: UIViewController {
   
-  weak var pickerDelegate: PHImagePickerDelegate?
+  weak var pickerDelegate: PHPhotoPickerDelegate?
   
   var allAlbumSections: [AlbumSection] = []
   
@@ -31,7 +31,7 @@ class PHPhotoPickerAlbumListViewController: UIViewController {
   /// Factory method for creating this view controller.
   ///
   /// - Returns: Returns an instance of this view controller.
-  class func instantiate(delegate: PHImagePickerDelegate? = nil) -> PHPhotoPickerAlbumListViewController? {
+  class func instantiate(delegate: PHPhotoPickerDelegate? = nil) -> PHPhotoPickerAlbumListViewController? {
     let vcName = String(describing: PHPhotoPickerAlbumListViewController.self)
     let storyboard = R.storyboard.phPhotoPickerAlbumListViewController
     guard let vcPHImageAlbumList = storyboard.instantiateInitialViewController() else {
