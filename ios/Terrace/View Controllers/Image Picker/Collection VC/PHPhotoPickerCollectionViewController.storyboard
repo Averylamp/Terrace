@@ -19,21 +19,38 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bRZ-Sq-l9J">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="k0A-oj-sTP">
-                                    <size key="itemSize" width="105" height="82"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="k0A-oj-sTP">
+                                    <size key="itemSize" width="193" height="146"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fcD-yq-HFq">
-                                        <rect key="frame" x="0.0" y="0.0" width="105" height="82"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PHPhotoCollectionViewCell" id="fcD-yq-HFq" customClass="PHPhotoPickerCollectionViewCell" customModule="Terrace" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="193" height="146"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Moy-2b-F2O">
-                                            <rect key="frame" x="0.0" y="0.0" width="105" height="82"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="193" height="146"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hxu-kf-0xE">
+                                                    <rect key="frame" x="0.0" y="0.0" width="193" height="146"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Hxu-kf-0xE" secondAttribute="height" multiplier="1:1" id="3IW-SE-GCS"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Hxu-kf-0xE" firstAttribute="width" secondItem="Moy-2b-F2O" secondAttribute="width" id="cZS-Ta-PSn"/>
+                                                <constraint firstItem="Hxu-kf-0xE" firstAttribute="centerY" secondItem="Moy-2b-F2O" secondAttribute="centerY" id="sZC-lN-Bdg"/>
+                                                <constraint firstItem="Hxu-kf-0xE" firstAttribute="centerX" secondItem="Moy-2b-F2O" secondAttribute="centerX" id="wE8-2h-R20"/>
+                                                <constraint firstItem="Hxu-kf-0xE" firstAttribute="height" secondItem="Moy-2b-F2O" secondAttribute="height" id="zQn-OZ-lby"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="105" height="82"/>
+                                        <size key="customSize" width="193" height="146"/>
+                                        <connections>
+                                            <outlet property="imageView" destination="Hxu-kf-0xE" id="Fcx-kB-8tK"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>

@@ -54,6 +54,7 @@ extension  PHPhotoPickerAlbumListViewController {
   
   /// Setup should only be called once
   func setup() {
+    self.title = "Photo Albums"
     self.albumTableView.dataSource = self
     self.albumTableView.delegate = self
     self.loadTableData()
@@ -93,23 +94,31 @@ extension PHPhotoPickerAlbumListViewController: UITableViewDataSource {
         if count == 0 {
           return
         }
-        print("Adding found album")
         allAlbums.append(AlbumItem(name: collection.localizedTitle ?? "Test", count: count, albumResult: collection))
       }
     }
-    var nativeSection = AlbumSection(albumItems: allAlbums.filter({ (nCollection) -> Bool in
-      return !nativeAlbumCollection.contains { (oCollection) -> Bool in
-        nCollection.albumResult.localizedTitle == oCollection.localizedTitle
-      }
-    }), sectionTitle: "Native Collections")
-    nativeSection.albumItems.sort(by: {$0.count > $1.count})
-    var otherSection =  AlbumSection(albumItems: allAlbums.filter({ (nCollection) -> Bool in
-         return nativeAlbumCollection.contains { (oCollection) -> Bool in
+    
+    let nativeAlbumItems =  allAlbums.filter({ (nCollection) -> Bool in
+         return !nativeAlbumCollection.contains { (oCollection) -> Bool in
            nCollection.albumResult.localizedTitle == oCollection.localizedTitle
          }
-       }), sectionTitle: "Other Albums")
+       })
+    var nativeSection = AlbumSection(albumItems: nativeAlbumItems, sectionTitle: "Native Albums (\(nativeAlbumItems.count))")
+    nativeSection.albumItems.sort(by: {$0.count > $1.count})
+    
+    let otherAlbumItems = allAlbums.filter({ (nCollection) -> Bool in
+      return nativeAlbumCollection.contains { (oCollection) -> Bool in
+        nCollection.albumResult.localizedTitle == oCollection.localizedTitle
+      }
+    })
+    var otherSection =  AlbumSection(albumItems: otherAlbumItems, sectionTitle: "Other Albums (\(otherAlbumItems.count))")
     otherSection.albumItems.sort(by: {$0.count > $1.count})
-    self.allAlbumSections.append(contentsOf: [nativeSection, otherSection])
+    if nativeSection.albumItems.count > 0 {
+      self.allAlbumSections.append(nativeSection)
+    }
+    if otherSection.albumItems.count > 0 {
+      self.allAlbumSections.append(otherSection)
+    }
 //    let depthAlbums = PHAssetCollection.fetchAssetCollections(with: PHAssetCollectionType.smartAlbum, subtype: PHAssetCollectionSubtype.smartAlbumDepthEffect, options: nil)
 //
 //    for index in 0..<depthAlbums.count {
