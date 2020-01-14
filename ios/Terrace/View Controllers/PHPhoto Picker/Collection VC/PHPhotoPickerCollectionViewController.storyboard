@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="p3Y-G2-DEJ">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Photo Picker Collection View Controller-->
+        <scene sceneID="Iis-I9-QO9">
+            <objects>
+                <viewController id="p3Y-G2-DEJ" customClass="PHPhotoPickerCollectionViewController" customModule="Terrace" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UXM-cg-SEE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bRZ-Sq-l9J">
+                                <rect key="frame" x="0.0" y="44" width="414" height="784"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="k0A-oj-sTP">
+                                    <size key="itemSize" width="193" height="146"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PHPhotoCollectionViewCell" id="fcD-yq-HFq" customClass="PHPhotoPickerCollectionViewCell" customModule="Terrace" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="193" height="146"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Moy-2b-F2O">
+                                            <rect key="frame" x="0.0" y="0.0" width="193" height="146"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hxu-kf-0xE">
+                                                    <rect key="frame" x="0.0" y="0.0" width="193" height="146"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Hxu-kf-0xE" secondAttribute="height" multiplier="1:1" id="3IW-SE-GCS"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Hxu-kf-0xE" firstAttribute="width" secondItem="Moy-2b-F2O" secondAttribute="width" id="cZS-Ta-PSn"/>
+                                                <constraint firstItem="Hxu-kf-0xE" firstAttribute="centerY" secondItem="Moy-2b-F2O" secondAttribute="centerY" id="sZC-lN-Bdg"/>
+                                                <constraint firstItem="Hxu-kf-0xE" firstAttribute="centerX" secondItem="Moy-2b-F2O" secondAttribute="centerX" id="wE8-2h-R20"/>
+                                                <constraint firstItem="Hxu-kf-0xE" firstAttribute="height" secondItem="Moy-2b-F2O" secondAttribute="height" id="zQn-OZ-lby"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="193" height="146"/>
+                                        <connections>
+                                            <outlet property="imageView" destination="Hxu-kf-0xE" id="Fcx-kB-8tK"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vhy-3I-WCg">
+                                <rect key="frame" x="12" y="836" width="26" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Vhy-3I-WCg" secondAttribute="height" id="RWA-Bg-4Qx"/>
+                                    <constraint firstAttribute="width" constant="26" id="cTG-YW-OHJ"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="znc-oQ-NbA">
+                                <rect key="frame" x="376" y="836" width="26" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="26" id="t8X-7g-qN2"/>
+                                </constraints>
+                            </imageView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="3" translatesAutoresizingMaskIntoConstraints="NO" id="cfm-pq-ZQ2">
+                                <rect key="frame" x="46" y="834" width="322" height="31"/>
+                                <segments>
+                                    <segment title="1"/>
+                                    <segment title="2"/>
+                                    <segment title="3"/>
+                                    <segment title="4"/>
+                                    <segment title="6"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControllerChanged:" destination="p3Y-G2-DEJ" eventType="valueChanged" id="Dty-WU-YAP"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="znc-oQ-NbA" firstAttribute="leading" secondItem="cfm-pq-ZQ2" secondAttribute="trailing" constant="8" id="3Fc-hR-yLF"/>
+                            <constraint firstItem="ZW3-mt-S52" firstAttribute="trailing" secondItem="znc-oQ-NbA" secondAttribute="trailing" constant="12" id="E8h-Dn-CEI"/>
+                            <constraint firstItem="Vhy-3I-WCg" firstAttribute="bottom" secondItem="ZW3-mt-S52" secondAttribute="bottom" id="ESu-be-vKI"/>
+                            <constraint firstItem="cfm-pq-ZQ2" firstAttribute="leading" secondItem="Vhy-3I-WCg" secondAttribute="trailing" constant="8" id="PFo-QN-1sJ"/>
+                            <constraint firstItem="cfm-pq-ZQ2" firstAttribute="centerY" secondItem="Vhy-3I-WCg" secondAttribute="centerY" id="WKr-gG-TxP"/>
+                            <constraint firstItem="cfm-pq-ZQ2" firstAttribute="height" secondItem="Vhy-3I-WCg" secondAttribute="height" multiplier="1.15385" id="YyB-2R-RPj"/>
+                            <constraint firstItem="znc-oQ-NbA" firstAttribute="centerY" secondItem="Vhy-3I-WCg" secondAttribute="centerY" id="co4-Vs-g4X"/>
+                            <constraint firstItem="ZW3-mt-S52" firstAttribute="trailing" secondItem="bRZ-Sq-l9J" secondAttribute="trailing" id="jml-Oo-0fX"/>
+                            <constraint firstItem="Vhy-3I-WCg" firstAttribute="top" secondItem="bRZ-Sq-l9J" secondAttribute="bottom" constant="8" symbolic="YES" id="kk9-fd-Wjj"/>
+                            <constraint firstItem="znc-oQ-NbA" firstAttribute="width" secondItem="znc-oQ-NbA" secondAttribute="height" id="lqt-Kv-sZy"/>
+                            <constraint firstItem="Vhy-3I-WCg" firstAttribute="leading" secondItem="ZW3-mt-S52" secondAttribute="leading" constant="12" id="tqg-jR-yiv"/>
+                            <constraint firstItem="bRZ-Sq-l9J" firstAttribute="top" secondItem="ZW3-mt-S52" secondAttribute="top" id="xi8-6S-ME1"/>
+                            <constraint firstItem="bRZ-Sq-l9J" firstAttribute="leading" secondItem="ZW3-mt-S52" secondAttribute="leading" id="zIz-Hn-Ru8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZW3-mt-S52"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageCollectionView" destination="bRZ-Sq-l9J" id="ZmN-n7-til"/>
+                        <outlet property="numberPerRowSegmentedControl" destination="cfm-pq-ZQ2" id="7IZ-h7-GNG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UHK-WW-0gS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="124.55357142857142"/>
+        </scene>
+    </scenes>
+</document>
