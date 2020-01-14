@@ -11,6 +11,9 @@ import Photos
 
 class MainViewController: UIViewController {
   
+  @IBOutlet weak var firstImageView: UIImageView!
+  @IBOutlet weak var secondImageView: UIImageView!
+  
   /// Factory method for creating this view controller.
   ///
   /// - Returns: Returns an instance of this view controller.
@@ -50,7 +53,7 @@ extension  MainViewController {
 extension MainViewController {
   
   @IBAction func clickedLibraryButton(_ sender: UIButton) {
-    guard let pickerController = PHPhotoPickerNavigationViewController.instantiate() else {
+    guard let pickerController = PHPhotoPickerNavigationViewController.instantiate(delegate: self) else {
       fatalError("Failed to create picker controller")
     }
     pickerController.pickerDelegate = self
@@ -64,5 +67,20 @@ extension MainViewController {
 extension MainViewController: PHPhotoPickerDelegate {
   func pickerDidSelectPHImage(asset: PHAsset) {
     print("Found image")
+    asset.doesContainImageDisparityMap { (containsImageDisparity) in
+      if containsImageDisparity {
+        print("Image contains disparity")
+      } else {
+        print("Image does not contain disparity")
+      }
+    }
+    asset.doesContainImageDepthMap { (containsImageDepthMap) in
+      if containsImageDepthMap {
+        print("Image contains depth map")
+      } else {
+        print("Image does not contain depth map")
+      }
+    }
+    
   }
 }

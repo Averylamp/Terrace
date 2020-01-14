@@ -169,7 +169,9 @@ extension PHPhotoPickerAlbumListViewController: UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     print("TableView: Selected item at row: \(indexPath.row)")
-    guard let phCollectionVC = PHPhotoPickerCollectionViewController.instantiate(photosCollection: self.allAlbumSections[indexPath.section].albumItems[indexPath.row]) else {
+    
+    guard let phCollectionVC = PHPhotoPickerCollectionViewController.instantiate(delegate: self.pickerDelegate,
+                                                                                 photosCollection: self.allAlbumSections[indexPath.section].albumItems[indexPath.row]) else {
       print("Failed to instantiate picker collection vc")
       return
     }
