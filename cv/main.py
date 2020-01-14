@@ -16,6 +16,12 @@ import open3d as o3d
 import matplotlib.pyplot as plt
 from open3d.open3d.geometry import create_rgbd_image_from_color_and_depth
 import time
+from scipy.spatial.transform import Rotation as R
+
+# from pointcloud import PointClouder
+from effects.effects import (
+    TDKenBurns
+)
 
 
 class Modeler(object):
@@ -74,8 +80,20 @@ class Effector(object):
             raise AssertionError("{} not a valid effect.".format(self.effect))
 
         self.load_data()
-        self.start_gui()
         self.show_depth()
+        # TODO: figure out why this causes an issue
+        # self.start_gui()
+
+        # handle the effect
+        self.effect_module = None
+        if self.effect == "3d_ken_burns":
+            self.effect_module = TDKenBurns(
+                self.bgr, self.depth, show_gui=True)
+
+        # run the effect
+        self.effect_module.run_effect()
+
+        cv2.waitKey(0)
 
     def load_data(self):
         """
@@ -141,7 +159,6 @@ class Effector(object):
         self.window_image = np.hstack(
             [rgb_image, masks_image, visible_depth_image])
         cv2.imshow(self.window_name, self.window_image)
-        cv2.waitKey(0)
 
     def show_depth(self):
         print("Showing depth.")
@@ -151,7 +168,6 @@ class Effector(object):
         # https://github.com/intel-isl/Open3D/issues/1024#issuecomment-506206087
         rgbd_image = create_rgbd_image_from_color_and_depth(
             color_raw, depth_raw)
-        print(rgbd_image)
 
         # this breaks the code:
         # https://github.com/intel-isl/Open3D/issues/691
@@ -159,15 +175,22 @@ class Effector(object):
         # plt.title('grayscale image')
         # plt.imshow(rgbd_image.color)
         # plt.subplot(1, 2, 2)
-        # plt.title('depth image')
+        # plt.title('depth image')∏
         # plt.imshow(rgbd_image.depth)
         # plt.show()
 
         # https://github.com/intel-isl/Open3D/issues/1024#issuecomment-515235233
+        # https://github.com/openMVG/openMVG/issues/669
+        h, w = self.bgr.shape[:2]
+        max_width_height = max(w, h)
+        focal_length = 1.2 * max_width_height
+        intrinsic_new = o3d.camera.PinholeCameraIntrinsic(
+            w, h, focal_length, focal_length, w / 2, h / 2)
+        my_extrinsic = np.identity(4, dtype="float64")
         pcd = o3d.geometry.create_point_cloud_from_rgbd_image(
             rgbd_image,
-            o3d.camera.PinholeCameraIntrinsic(
-                o3d.camera.PinholeCameraIntrinsicParameters.PrimeSenseDefault))
+            intrinsic_new,
+            my_extrinsic)
         # Flip it, otherwise the pointcloud will be upside down
         pcd.transform([[1, 0, 0, 0], [0, -1, 0, 0],
                        [0, 0, -1, 0], [0, 0, 0, 1]])
