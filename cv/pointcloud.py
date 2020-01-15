@@ -27,7 +27,8 @@ class PointClouder(object):
                 [focal_length, 0, self.width / 2],
                 [0, focal_length, self.height / 2],
                 [0, 0, 1]
-            ]
+            ],
+            dtype="float64"
         )
         self.intrinsics_inv = np.linalg.inv(self.intrinsics)
         self.extrinsics = np.array(
@@ -36,7 +37,8 @@ class PointClouder(object):
                 [0, 1, 0, 0],
                 [0, 0, 1, 0],
                 [0, 0, 0, 1]
-            ]
+            ],
+            dtype="float64"
         )
 
         self.create_xyz_points()

@@ -5,33 +5,27 @@ Example usage:
 cd cv
 python main.py --path inputs/KDWm2mJrR7s_25100000/
 """
-
-import cv2
-import argparse
-import sys
-import os
-import numpy as np
-import utils
 import open3d as o3d
+import utils
+import numpy as np
+import os
+import sys
+import argparse
+import cv2
 import matplotlib.pyplot as plt
 from open3d.open3d.geometry import create_rgbd_image_from_color_and_depth
 import time
 from scipy.spatial.transform import Rotation as R
-
-# from pointcloud import PointClouder
-from effects.effects import (
-    TDKenBurns
+from models.models import (
+    Modeler
 )
-
-
-class Modeler(object):
-    """
-    The Modeler class is used to run models or algorithms on input images
-    to generate the necessary input for the Effector.
-    """
-
-    def __init__(self, input_filename):
-        self.input_filename = input_filename
+from effects.effects import (
+    TDKenBurns,
+    Dolly,
+    Effect  # base class
+)
+# import matplotlib
+# matplotlib.use("Qt5Agg")
 
 
 class Effector(object):
@@ -41,12 +35,12 @@ class Effector(object):
     the iOS application will call.
     """
     effects = {
-        "boomerang",
-        "hyperlapse",
-        "3d_ken_burns",
-        "2d_ken_burns",
-        "dolly",
-        "space_elevator"
+        "boomerang": None,
+        "hyperlapse": None,
+        "3d_ken_burns": TDKenBurns,
+        "2d_ken_burns": None,
+        "dolly": Dolly,
+        "space_elevator": None
     }
 
     index_to_type = {
@@ -56,6 +50,14 @@ class Effector(object):
     }
 
     def __init__(self, path, effect):
+        """
+        Path can be folder or image.
+        if folder -> get bgr, masks, and depth from it
+        if image -> create bgr, masks, and depth
+
+        effect -> the type of effect to create
+        type -> folder or image
+        """
         self.path = path
         self.effect = effect
 
@@ -79,21 +81,29 @@ class Effector(object):
         if self.effect not in self.effects:
             raise AssertionError("{} not a valid effect.".format(self.effect))
 
-        self.load_data()
-        self.show_depth()
-        # TODO: figure out why this causes an issue
-        # self.start_gui()
+        # either lood data or create data
+        # depends on the input
+        if utils.is_image(self.path):
+            self.create_data()
+        else:
+            self.load_data()
 
-        # handle the effect
-        self.effect_module = None
-        if self.effect == "3d_ken_burns":
-            self.effect_module = TDKenBurns(
-                self.bgr, self.depth, show_gui=True)
+        # choose which effect to use and initialize the class
+        self.effect_module = self.effects[self.effect](
+            self.bgr, self.depth, show_gui=True
+        )
+        assert isinstance(self.effect_module, Effect)
 
         # run the effect
         self.effect_module.run_effect()
 
         cv2.waitKey(0)
+
+    def create_data(self):
+        """
+        Create data with modeler.
+        """
+        pass
 
     def load_data(self):
         """
@@ -131,6 +141,7 @@ class Effector(object):
         print(string)
 
     def window_callback(self, event, x, y, flags, param):
+        # TODO: handle user input
         cursor_type = self.get_type_from_x_location(x)
         # self.rgb.shape[1] is the width
         x_loc = x % self.bgr.shape[1]
@@ -143,9 +154,8 @@ class Effector(object):
 
     def start_gui(self):
         """
-        Load from filepath and start gui.
+        Show the inputs: (bgr, masks, depth).
         """
-        # TODO: load image(s), create window
         # use cv2.WINDOW_NORMAL to resize as desired
         cv2.namedWindow(self.window_name)  # , cv2.WINDOW_NORMAL)
         cv2.setMouseCallback(self.window_name, self.window_callback)
@@ -159,6 +169,7 @@ class Effector(object):
         self.window_image = np.hstack(
             [rgb_image, masks_image, visible_depth_image])
         cv2.imshow(self.window_name, self.window_image)
+        cv2.waitKey(0)
 
     def show_depth(self):
         print("Showing depth.")
@@ -184,13 +195,11 @@ class Effector(object):
         h, w = self.bgr.shape[:2]
         max_width_height = max(w, h)
         focal_length = 1.2 * max_width_height
-        intrinsic_new = o3d.camera.PinholeCameraIntrinsic(
+        intrinsic = o3d.camera.PinholeCameraIntrinsic(
             w, h, focal_length, focal_length, w / 2, h / 2)
-        my_extrinsic = np.identity(4, dtype="float64")
         pcd = o3d.geometry.create_point_cloud_from_rgbd_image(
             rgbd_image,
-            intrinsic_new,
-            my_extrinsic)
+            intrinsic)
         # Flip it, otherwise the pointcloud will be upside down
         pcd.transform([[1, 0, 0, 0], [0, -1, 0, 0],
                        [0, 0, -1, 0], [0, 0, 0, 1]])

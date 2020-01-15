@@ -14,3 +14,4 @@ moviepy
 cython
 open3d-python
 autopep8
+PyQt5
