@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		631B341DC2CC5A838ADE441C /* Pods_TerraceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C528412A3FB299C4A30A086 /* Pods_TerraceTests.framework */; };
 		7DD06A689F88BA82BDE5BBE9 /* Pods_Terrace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 083C4E32353D7CD933176249 /* Pods_Terrace.framework */; };
+		BB05FC7223CEC84B00BBC7C5 /* KBCropEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB05FC7123CEC84B00BBC7C5 /* KBCropEditorViewController.swift */; };
+		BB05FC7423CEC85A00BBC7C5 /* KBPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB05FC7323CEC85A00BBC7C5 /* KBPreviewViewController.swift */; };
+		BB05FC7623CEC88300BBC7C5 /* KBCropEditorViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB05FC7523CEC88300BBC7C5 /* KBCropEditorViewController.storyboard */; };
+		BB05FC7823CEC89000BBC7C5 /* KBPreviewViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB05FC7723CEC89000BBC7C5 /* KBPreviewViewController.storyboard */; };
+		BB05FC7C23CED38400BBC7C5 /* KBNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB05FC7B23CED38400BBC7C5 /* KBNavigationController.swift */; };
+		BB05FC7E23CED38D00BBC7C5 /* KBNavigationController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB05FC7D23CED38D00BBC7C5 /* KBNavigationController.storyboard */; };
 		BB2814A423C862DD000FBCBE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2814A323C862DD000FBCBE /* GoogleService-Info.plist */; };
 		BB60120723CAF9B000794BE4 /* PHPhotoPickerCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB60120623CAF9B000794BE4 /* PHPhotoPickerCollectionViewController.swift */; };
 		BB60120923CAF9BC00794BE4 /* PHPhotoPickerCollectionViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB60120823CAF9BC00794BE4 /* PHPhotoPickerCollectionViewController.storyboard */; };
@@ -61,6 +67,12 @@
 		2755AC4281A405E605C57512 /* Pods-ImagearTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImagearTests.release.xcconfig"; path = "Target Support Files/Pods-ImagearTests/Pods-ImagearTests.release.xcconfig"; sourceTree = "<group>"; };
 		6B165F8B1E172959B4B2E98F /* Pods-TerraceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TerraceTests.debug.xcconfig"; path = "Target Support Files/Pods-TerraceTests/Pods-TerraceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7A303FD47A72AFBC90CC086D /* Pods-Imagear.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagear.release.xcconfig"; path = "Target Support Files/Pods-Imagear/Pods-Imagear.release.xcconfig"; sourceTree = "<group>"; };
+		BB05FC7123CEC84B00BBC7C5 /* KBCropEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KBCropEditorViewController.swift; sourceTree = "<group>"; };
+		BB05FC7323CEC85A00BBC7C5 /* KBPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KBPreviewViewController.swift; sourceTree = "<group>"; };
+		BB05FC7523CEC88300BBC7C5 /* KBCropEditorViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = KBCropEditorViewController.storyboard; sourceTree = "<group>"; };
+		BB05FC7723CEC89000BBC7C5 /* KBPreviewViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = KBPreviewViewController.storyboard; sourceTree = "<group>"; };
+		BB05FC7B23CED38400BBC7C5 /* KBNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KBNavigationController.swift; sourceTree = "<group>"; };
+		BB05FC7D23CED38D00BBC7C5 /* KBNavigationController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = KBNavigationController.storyboard; sourceTree = "<group>"; };
 		BB2814A323C862DD000FBCBE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BB60120623CAF9B000794BE4 /* PHPhotoPickerCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHPhotoPickerCollectionViewController.swift; sourceTree = "<group>"; };
 		BB60120823CAF9BC00794BE4 /* PHPhotoPickerCollectionViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PHPhotoPickerCollectionViewController.storyboard; sourceTree = "<group>"; };
@@ -141,6 +153,43 @@
 				0420D65EC4D5F92B0BAD66FF /* Pods-TerraceTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		BB05FC7023CEC82700BBC7C5 /* Ken Burns Effect */ = {
+			isa = PBXGroup;
+			children = (
+				BB05FC7923CEC8AD00BBC7C5 /* KB Crop Editor */,
+				BB05FC7A23CEC8B600BBC7C5 /* KB Preview */,
+				BB05FC7F23CED39100BBC7C5 /* KB Navigation Controller */,
+			);
+			path = "Ken Burns Effect";
+			sourceTree = "<group>";
+		};
+		BB05FC7923CEC8AD00BBC7C5 /* KB Crop Editor */ = {
+			isa = PBXGroup;
+			children = (
+				BB05FC7123CEC84B00BBC7C5 /* KBCropEditorViewController.swift */,
+				BB05FC7523CEC88300BBC7C5 /* KBCropEditorViewController.storyboard */,
+			);
+			path = "KB Crop Editor";
+			sourceTree = "<group>";
+		};
+		BB05FC7A23CEC8B600BBC7C5 /* KB Preview */ = {
+			isa = PBXGroup;
+			children = (
+				BB05FC7323CEC85A00BBC7C5 /* KBPreviewViewController.swift */,
+				BB05FC7723CEC89000BBC7C5 /* KBPreviewViewController.storyboard */,
+			);
+			path = "KB Preview";
+			sourceTree = "<group>";
+		};
+		BB05FC7F23CED39100BBC7C5 /* KB Navigation Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BB05FC7B23CED38400BBC7C5 /* KBNavigationController.swift */,
+				BB05FC7D23CED38D00BBC7C5 /* KBNavigationController.storyboard */,
+			);
+			path = "KB Navigation Controller";
 			sourceTree = "<group>";
 		};
 		BB60120523CAF91900794BE4 /* PHPhoto Picker */ = {
@@ -288,6 +337,7 @@
 				BB60120523CAF91900794BE4 /* PHPhoto Picker */,
 				BB80ED2C23C8A2610000987D /* Main Navigation */,
 				BB80ED2B23C8A2570000987D /* Main View Controller */,
+				BB05FC7023CEC82700BBC7C5 /* Ken Burns Effect */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -425,9 +475,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB80ED3123C8A2A90000987D /* MainNavigationController.storyboard in Resources */,
+				BB05FC7623CEC88300BBC7C5 /* KBCropEditorViewController.storyboard in Resources */,
 				BB60120D23CAFAC500794BE4 /* PHPhotoPickerAlbumListViewController.storyboard in Resources */,
 				BB907C6B23C72058000E5B0F /* LaunchScreen.storyboard in Resources */,
 				BB2814A423C862DD000FBCBE /* GoogleService-Info.plist in Resources */,
+				BB05FC7823CEC89000BBC7C5 /* KBPreviewViewController.storyboard in Resources */,
+				BB05FC7E23CED38D00BBC7C5 /* KBNavigationController.storyboard in Resources */,
 				BB60120923CAF9BC00794BE4 /* PHPhotoPickerCollectionViewController.storyboard in Resources */,
 				BB907C6823C72058000E5B0F /* Assets.xcassets in Resources */,
 				BB907C6623C72058000E5B0F /* MainViewController.storyboard in Resources */,
@@ -558,8 +611,10 @@
 			files = (
 				BB907C6323C72058000E5B0F /* MainViewController.swift in Sources */,
 				BB80ED2E23C8A2940000987D /* MainNavigationController.swift in Sources */,
+				BB05FC7223CEC84B00BBC7C5 /* KBCropEditorViewController.swift in Sources */,
 				BB60121A23CB353600794BE4 /* PhotosHelper.swift in Sources */,
 				BB60120B23CAFAC100794BE4 /* PHPhotoPickerAlbumListViewController.swift in Sources */,
+				BB05FC7C23CED38400BBC7C5 /* KBNavigationController.swift in Sources */,
 				BB60121F23CD67B500794BE4 /* PHAsset+Depth.swift in Sources */,
 				BB907C5F23C72058000E5B0F /* AppDelegate.swift in Sources */,
 				BBC3296123C833DA004922B8 /* R.generated.swift in Sources */,
@@ -570,6 +625,7 @@
 				BB60120723CAF9B000794BE4 /* PHPhotoPickerCollectionViewController.swift in Sources */,
 				BB907C6123C72058000E5B0F /* SceneDelegate.swift in Sources */,
 				BB60121623CAFFEC00794BE4 /* PHPhotoPickerDelegate.swift in Sources */,
+				BB05FC7423CEC85A00BBC7C5 /* KBPreviewViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

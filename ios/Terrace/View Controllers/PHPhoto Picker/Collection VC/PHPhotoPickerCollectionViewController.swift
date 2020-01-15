@@ -109,7 +109,7 @@ extension PHPhotoPickerCollectionViewController: UICollectionViewDataSource {
   
   func loadCollectionData() {
     let allAssetsFetch = PHAsset.fetchAssets(in: self.photoCollectionItem.albumResult, options: nil)
-    self.imageAssets = allAssetsFetch.objects(at: IndexSet(integersIn: Range(NSRange(location: 0, length: allAssetsFetch.count))!))
+    self.imageAssets = allAssetsFetch.objects(at: IndexSet(integersIn: Range(NSRange(location: 0, length: allAssetsFetch.count))!)).reversed()
     self.imageCollectionView.reloadData()
   }
   
@@ -172,10 +172,10 @@ extension PHPhotoPickerCollectionViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     print("Collection View selected item at: \(indexPath.item)")
     let asset = self.imageAssets[indexPath.item]
+    self.navigationController?.dismiss(animated: true, completion: nil)
     if let delegate = self.pickerDelegate {
       delegate.pickerDidSelectPHImage(asset: asset)
     }
-    self.navigationController?.dismiss(animated: true, completion: nil)
   }
   
 }

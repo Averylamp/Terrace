@@ -37,6 +37,16 @@ extension  MainViewController {
     self.stylize()
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    self.navigationController?.setNavigationBarHidden(true, animated: animated)
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    self.navigationController?.setNavigationBarHidden(false, animated: animated)
+  }
+  
   /// Setup should only be called once
   func setup() {
     
@@ -66,6 +76,13 @@ extension MainViewController {
 // MARK: PHPhotoPickerDelegate
 extension MainViewController: PHPhotoPickerDelegate {
   func pickerDidSelectPHImage(asset: PHAsset) {
+    guard let kbEditorVC = KBCropEditorViewController.instantiate(asset: asset) else {
+      print("Unable to create kb crop vc")
+      return
+    }
+    
+    self.navigationController?.pushViewController(kbEditorVC, animated: true)
+    
     print("Found image")
     asset.doesContainImageDisparityMap { (containsImageDisparity) in
       if containsImageDisparity {

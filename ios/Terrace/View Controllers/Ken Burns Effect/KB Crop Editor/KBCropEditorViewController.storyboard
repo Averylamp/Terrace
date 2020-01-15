@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eDh-jv-aIK">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Crop Editor View Controller-->
+        <scene sceneID="kQO-wB-h3Y">
+            <objects>
+                <viewController id="eDh-jv-aIK" customClass="KBCropEditorViewController" customModule="Terrace" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XAp-Xw-bUp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rFj-X0-ftc">
+                                <rect key="frame" x="0.0" y="303" width="414" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="JHB-AM-3dh"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="rFj-X0-ftc" firstAttribute="centerY" secondItem="uOe-6y-PRs" secondAttribute="centerY" id="F0e-NY-mkq"/>
+                            <constraint firstItem="rFj-X0-ftc" firstAttribute="width" secondItem="XAp-Xw-bUp" secondAttribute="width" id="xBa-9N-Yu7"/>
+                            <constraint firstItem="rFj-X0-ftc" firstAttribute="centerX" secondItem="uOe-6y-PRs" secondAttribute="centerX" id="yKw-9e-NyI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="uOe-6y-PRs"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="rFj-X0-ftc" id="5w7-td-DUG"/>
+                        <outlet property="imageViewHeight" destination="JHB-AM-3dh" id="1VY-bd-D8I"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="trZ-sJ-o7g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="115"/>
+        </scene>
+    </scenes>
+</document>
