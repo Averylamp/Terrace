@@ -15,7 +15,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rFj-X0-ftc">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rFj-X0-ftc">
                                 <rect key="frame" x="0.0" y="303" width="414" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="900" constant="300" id="JHB-AM-3dh"/>
@@ -41,6 +41,9 @@
                                             <segment title="First"/>
                                             <segment title="Second"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="frameSegmentedControlChanged:" destination="eDh-jv-aIK" eventType="valueChanged" id="sHc-Ub-k5i"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -66,6 +69,7 @@
                         <viewLayoutGuide key="safeArea" id="uOe-6y-PRs"/>
                     </view>
                     <connections>
+                        <outlet property="frameSegmentedControl" destination="seP-sl-GZg" id="SBF-W0-7xo"/>
                         <outlet property="imageView" destination="rFj-X0-ftc" id="5w7-td-DUG"/>
                         <outlet property="imageViewHeight" destination="JHB-AM-3dh" id="1VY-bd-D8I"/>
                         <outlet property="ratioSegmentedControl" destination="S0Z-SW-qG7" id="YQi-jq-hcL"/>

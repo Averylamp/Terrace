@@ -18,13 +18,18 @@ class KBFrameCropView: UIView {
   var bottomConstraint: NSLayoutConstraint?
   
   let selectedColor: UIColor = UIColor(red: 0.18, green: 0.47, blue: 0.95, alpha: 0.3)
-  let deselectedColor: UIColor = UIColor(white: 0.3, alpha: 0.3)
+  let deselectedColor: UIColor = UIColor(white: 0.9, alpha: 0.4)
   let highlightColor: UIColor = UIColor(white: 0.7, alpha: 0.3)
+  var ratio: CGFloat = 1.0
   var selected: Bool = false
   
   override init(frame: CGRect) {
     super.init(frame: frame)
+  }
+  
+  func setupKBFrameView() {
     self.setupSubviews()
+    self.setupGestureRecognizers()
     self.stylize()
   }
   
@@ -78,28 +83,120 @@ class KBFrameCropView: UIView {
     ])
   }
   
+  func setupGestureRecognizers() {
+    let panGestureRecongnizer = UIPanGestureRecognizer()
+    panGestureRecongnizer.addTarget(self, action: #selector(KBFrameCropView.handlePanGestureRecognizer(gestureRecognizer:)))
+    panGestureRecongnizer.delegate = self
+    panGestureRecongnizer.name = "Drag"
+    self.addGestureRecognizer(panGestureRecongnizer)
+  }
+  
   func stylize() {
     self.backgroundColor = UIColor(white: 0.3, alpha: 0.1)
     self.layer.borderWidth = 1.5
     self.setSelected(selected: false)
   }
   
-  func setSelected(selected: Bool){
+  func setSelected(selected: Bool) {
     self.selected = selected
-    if selected{
+    self.isUserInteractionEnabled = selected
+    if selected {
       self.backgroundColor = self.highlightColor
       self.layer.borderColor = self.selectedColor.cgColor
       self.handles.forEach({
         $0.backgroundColor = self.selectedColor
       })
-    }else{
+    } else {
       self.backgroundColor = nil
       self.layer.borderColor = self.deselectedColor.cgColor
       self.handles.forEach({
-        $0.backgroundColor = nil
+        $0.backgroundColor = self.deselectedColor
       })
     }
+  }
+  
+  func setRatio(ratio: CGFloat) {
+    var targetSize: CGSize = CGSize.zero
+    let maxWidth = self.frame.width + (self.leftConstraint?.constant ?? 0) - (self.rightConstraint?.constant ?? 0)
+    let maxHeight = self.frame.height + (self.topConstraint?.constant ?? 0) - (self.bottomConstraint?.constant ?? 0)
+    print("Max, h: \(maxHeight), w: \(maxWidth)")
+    var scalar: CGFloat = 1.0
+    if self.ratio < ratio {
+//      Needs to make the ratio wider
+      targetSize.height = self.frame.height
+      targetSize.width = targetSize.height * ratio
+    } else {
+//      Needs to make the ratio taller
+      targetSize.width = self.frame.width
+      targetSize.height = targetSize.width / ratio
+    }
     
+    print("OG Target Size: \(targetSize)")
+    if targetSize.width > maxWidth && maxWidth / targetSize.width * 0.9 < scalar {
+      scalar = maxWidth / targetSize.width  * 0.9
+    }
+    if targetSize.height > maxHeight && maxHeight / targetSize.height * 0.9 < scalar {
+      scalar = maxHeight / targetSize.height  * 0.9
+    }
+    print(scalar)
+    // Apply scalar
+    targetSize.width *= scalar
+    targetSize.height *= scalar
+   
+    let widthDifference = targetSize.width - self.frame.width
+    let heightDifference = targetSize.height - self.frame.height
+    self.leftConstraint?.constant -= widthDifference / 2.0
+    self.rightConstraint?.constant += widthDifference / 2.0
+    self.topConstraint?.constant -= heightDifference / 2.0
+    self.bottomConstraint?.constant += heightDifference / 2.0
+    UIView.animate(withDuration: 0.5) {
+      self.layoutIfNeeded()
+    }
+    
+    self.ratio = ratio
   }
 
+}
+
+// MARK: UIGestureRecognizers
+extension KBFrameCropView: UIGestureRecognizerDelegate {
+  
+  @objc func handleButtonClicked(sender: UIButton) {
+    print("Handle button clicked")
+  }
+  
+  override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    return true
+  }
+  
+  @objc func handlePanGestureRecognizer(gestureRecognizer: UIGestureRecognizer) {
+    guard let gestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer else {
+      return
+    }
+    var translation = gestureRecognizer.translation(in: self)
+    gestureRecognizer.setTranslation(CGPoint.zero, in: self)
+    
+    if gestureRecognizer.name == "Drag"{
+      if (self.leftConstraint?.constant ?? 0 + translation.x < 0 && translation.x < 0) ||
+        (self.rightConstraint?.constant ?? self.frame.width + translation.x > 0 && translation.x > 0) {
+        translation.x = 0.0
+      }
+      if (self.topConstraint?.constant ?? 0 + translation.y < 0 && translation.y < 0) ||
+        (self.bottomConstraint?.constant ?? self.frame.width + translation.y > 0 && translation.y > 0) {
+        translation.y = 0.0
+      }
+      
+      self.leftConstraint?.constant += translation.x
+      self.rightConstraint?.constant += translation.x
+      self.topConstraint?.constant += translation.y
+      self.bottomConstraint?.constant += translation.y
+      
+      self.superview?.layoutIfNeeded()
+    }
+  }
+  
+  @objc func handleTapGestureRecognizer(gestureRecognizer: UIGestureRecognizer) {
+    print("Tap Gesture Recognizer triggered")
+  }
+  
 }
