@@ -38,6 +38,10 @@
 		BB907C6B23C72058000E5B0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB907C6923C72058000E5B0F /* LaunchScreen.storyboard */; };
 		BB907C7623C72058000E5B0F /* TerraceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB907C7523C72058000E5B0F /* TerraceTests.swift */; };
 		BB907C8123C72059000E5B0F /* TerraceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB907C8023C72059000E5B0F /* TerraceUITests.swift */; };
+		BB96E2BB23D41D180000262E /* NetworkingConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB96E2BA23D41D180000262E /* NetworkingConfig.swift */; };
+		BB96E2BD23D41D2C0000262E /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB96E2BC23D41D2C0000262E /* Result.swift */; };
+		BB96E2BF23D41D3F0000262E /* KenBurnsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB96E2BE23D41D3F0000262E /* KenBurnsAPI.swift */; };
+		BB96E2C123D41E060000262E /* TerraceKenBurnsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB96E2C023D41E060000262E /* TerraceKenBurnsAPI.swift */; };
 		BBC3296123C833DA004922B8 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC3296023C833DA004922B8 /* R.generated.swift */; };
 		BBCB259C23C733BA0047635B /* MAECVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = BBCB259B23C733BA0047635B /* MAECVWrapper.mm */; };
 		BBCB259E23C734160047635B /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCB259D23C734160047635B /* opencv2.framework */; };
@@ -103,6 +107,10 @@
 		BB907C7C23C72059000E5B0F /* TerraceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TerraceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB907C8023C72059000E5B0F /* TerraceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerraceUITests.swift; sourceTree = "<group>"; };
 		BB907C8223C72059000E5B0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB96E2BA23D41D180000262E /* NetworkingConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingConfig.swift; sourceTree = "<group>"; };
+		BB96E2BC23D41D2C0000262E /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		BB96E2BE23D41D3F0000262E /* KenBurnsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KenBurnsAPI.swift; sourceTree = "<group>"; };
+		BB96E2C023D41E060000262E /* TerraceKenBurnsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerraceKenBurnsAPI.swift; sourceTree = "<group>"; };
 		BBC3296023C833DA004922B8 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		BBCB259923C733BA0047635B /* imagear-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "imagear-Bridging-Header.h"; sourceTree = "<group>"; };
 		BBCB259A23C733BA0047635B /* MAECVWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAECVWrapper.h; sourceTree = "<group>"; };
@@ -299,6 +307,7 @@
 				BB2814A323C862DD000FBCBE /* GoogleService-Info.plist */,
 				BBCB259823C7339C0047635B /* Config */,
 				BBCB259623C733790047635B /* Bridging */,
+				BB96E2B923D41D090000262E /* Networking */,
 				BB60121D23CD67A100794BE4 /* Model */,
 				BBCB259723C7338E0047635B /* View Controllers */,
 			);
@@ -321,6 +330,17 @@
 				BB907C8223C72059000E5B0F /* Info.plist */,
 			);
 			path = TerraceUITests;
+			sourceTree = "<group>";
+		};
+		BB96E2B923D41D090000262E /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				BB96E2BA23D41D180000262E /* NetworkingConfig.swift */,
+				BB96E2BC23D41D2C0000262E /* Result.swift */,
+				BB96E2BE23D41D3F0000262E /* KenBurnsAPI.swift */,
+				BB96E2C023D41E060000262E /* TerraceKenBurnsAPI.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		BBCB259623C733790047635B /* Bridging */ = {
@@ -616,16 +636,20 @@
 				BB80ED2E23C8A2940000987D /* MainNavigationController.swift in Sources */,
 				BB05FC7223CEC84B00BBC7C5 /* KBCropEditorViewController.swift in Sources */,
 				BB05FC8123CF17BD00BBC7C5 /* KBFrameCropView.swift in Sources */,
+				BB96E2BB23D41D180000262E /* NetworkingConfig.swift in Sources */,
 				BB60121A23CB353600794BE4 /* PhotosHelper.swift in Sources */,
+				BB96E2BD23D41D2C0000262E /* Result.swift in Sources */,
 				BB60120B23CAFAC100794BE4 /* PHPhotoPickerAlbumListViewController.swift in Sources */,
 				BB05FC7C23CED38400BBC7C5 /* KBNavigationController.swift in Sources */,
 				BB60121F23CD67B500794BE4 /* PHAsset+Depth.swift in Sources */,
 				BB907C5F23C72058000E5B0F /* AppDelegate.swift in Sources */,
 				BBC3296123C833DA004922B8 /* R.generated.swift in Sources */,
 				BB60120F23CAFB6C00794BE4 /* PHPhotoPickerNavigationViewController.swift in Sources */,
+				BB96E2C123D41E060000262E /* TerraceKenBurnsAPI.swift in Sources */,
 				BBCB259C23C733BA0047635B /* MAECVWrapper.mm in Sources */,
 				BB60121823CB084200794BE4 /* PHPhotoPickerAlbumTableViewCell.swift in Sources */,
 				BB60121C23CC2CA500794BE4 /* PHPhotoPickerCollectionViewCell.swift in Sources */,
+				BB96E2BF23D41D3F0000262E /* KenBurnsAPI.swift in Sources */,
 				BB60120723CAF9B000794BE4 /* PHPhotoPickerCollectionViewController.swift in Sources */,
 				BB907C6123C72058000E5B0F /* SceneDelegate.swift in Sources */,
 				BB60121623CAFFEC00794BE4 /* PHPhotoPickerDelegate.swift in Sources */,

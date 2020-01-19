@@ -72,7 +72,7 @@ extension  KBCropEditorViewController {
     self.imageViewHeight.constant = CGFloat(self.fullAsset.pixelHeight) / CGFloat(self.fullAsset.pixelWidth) * self.view.frame.width
     
     self.imageViewWidthConstraint.isActive = false
-    let ratioConstraint = NSLayoutConstraint(item: self.imageView, attribute: .width, relatedBy: .equal,
+    let ratioConstraint = NSLayoutConstraint(item: self.imageView as Any, attribute: .width, relatedBy: .equal,
                                              toItem: self.imageView, attribute: .height,
                                              multiplier: CGFloat(self.fullAsset.pixelWidth) / CGFloat(self.fullAsset.pixelHeight), constant: 0.0)
     self.imageView.addConstraint(ratioConstraint)
