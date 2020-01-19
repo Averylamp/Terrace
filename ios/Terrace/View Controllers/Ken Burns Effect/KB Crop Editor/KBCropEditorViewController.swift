@@ -13,14 +13,14 @@ class KBCropEditorViewController: UIViewController {
   
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
+  @IBOutlet weak var imageViewWidthConstraint: NSLayoutConstraint!
   @IBOutlet weak var ratioSegmentedControl: UISegmentedControl!
   @IBOutlet weak var frameSegmentedControl: UISegmentedControl!
   
   var fullAsset: PHAsset!
   var assetImage: UIImage?
   var effectRatio: CGFloat = 1.0
-  var fullImageFrame: CGRect = CGRect.zero
-  
+
   var firstFrameCropper: KBFrameCropView = KBFrameCropView()
   var secondFrameCropper: KBFrameCropView = KBFrameCropView()
   var panGestureRecognizer: UIPanGestureRecognizer?
@@ -70,9 +70,14 @@ extension  KBCropEditorViewController {
     print("Image Size: \(String(describing: self.assetImage?.size))")
     self.imageView.image = self.assetImage
     self.imageViewHeight.constant = CGFloat(self.fullAsset.pixelHeight) / CGFloat(self.fullAsset.pixelWidth) * self.view.frame.width
+    
+    self.imageViewWidthConstraint.isActive = false
+    let ratioConstraint = NSLayoutConstraint(item: self.imageView, attribute: .width, relatedBy: .equal,
+                                             toItem: self.imageView, attribute: .height,
+                                             multiplier: CGFloat(self.fullAsset.pixelWidth) / CGFloat(self.fullAsset.pixelHeight), constant: 0.0)
+    self.imageView.addConstraint(ratioConstraint)
     self.view.layoutIfNeeded()
-    self.fullImageFrame = self.imageView.frame
-        
+    
     self.firstFrameCropper.setupKBFrameView()
     self.secondFrameCropper.setupKBFrameView()
     self.imageView.addSubview(self.firstFrameCropper)
@@ -80,8 +85,6 @@ extension  KBCropEditorViewController {
     self.imageView.addSubview(self.secondFrameCropper)
     self.firstFrameCropper.translatesAutoresizingMaskIntoConstraints = false
     self.secondFrameCropper.translatesAutoresizingMaskIntoConstraints = false
-    
-    let fullAssetSize = CGSize(width: self.fullAsset.pixelWidth, height: self.fullAsset.pixelHeight)
     
     let imageViewSize = self.imageView.frame.size
     let minSide = min(imageViewSize.width, imageViewSize.height)

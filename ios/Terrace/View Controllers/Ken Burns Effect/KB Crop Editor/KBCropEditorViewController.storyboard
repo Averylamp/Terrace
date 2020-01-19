@@ -72,6 +72,7 @@
                         <outlet property="frameSegmentedControl" destination="seP-sl-GZg" id="SBF-W0-7xo"/>
                         <outlet property="imageView" destination="rFj-X0-ftc" id="5w7-td-DUG"/>
                         <outlet property="imageViewHeight" destination="JHB-AM-3dh" id="1VY-bd-D8I"/>
+                        <outlet property="imageViewWidthConstraint" destination="xBa-9N-Yu7" id="foy-W2-a2Q"/>
                         <outlet property="ratioSegmentedControl" destination="S0Z-SW-qG7" id="YQi-jq-hcL"/>
                     </connections>
                 </viewController>
