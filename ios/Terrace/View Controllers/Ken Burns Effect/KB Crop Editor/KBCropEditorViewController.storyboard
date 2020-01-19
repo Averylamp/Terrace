@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eDh-jv-aIK">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Crop Editor View Controller-->
+        <scene sceneID="kQO-wB-h3Y">
+            <objects>
+                <viewController id="eDh-jv-aIK" customClass="KBCropEditorViewController" customModule="Terrace" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XAp-Xw-bUp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rFj-X0-ftc">
+                                <rect key="frame" x="0.0" y="303" width="414" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="900" constant="300" id="JHB-AM-3dh"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qXa-qE-TUz">
+                                <rect key="frame" x="0.0" y="800" width="414" height="50"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="S0Z-SW-qG7">
+                                        <rect key="frame" x="8" y="9.5" width="140" height="32"/>
+                                        <segments>
+                                            <segment title="1:1"/>
+                                            <segment title="4:3"/>
+                                            <segment title="16:9"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="ratioSegmentedControllerChanged:" destination="eDh-jv-aIK" eventType="valueChanged" id="Fso-gU-zsW"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="seP-sl-GZg">
+                                        <rect key="frame" x="271" y="9.5" width="131" height="32"/>
+                                        <segments>
+                                            <segment title="First"/>
+                                            <segment title="Second"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="frameSegmentedControlChanged:" destination="eDh-jv-aIK" eventType="valueChanged" id="sHc-Ub-k5i"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="seP-sl-GZg" firstAttribute="centerY" secondItem="S0Z-SW-qG7" secondAttribute="centerY" id="I8b-vY-6sg"/>
+                                    <constraint firstAttribute="trailing" secondItem="seP-sl-GZg" secondAttribute="trailing" constant="12" id="NVJ-9b-Smb"/>
+                                    <constraint firstItem="S0Z-SW-qG7" firstAttribute="leading" secondItem="qXa-qE-TUz" secondAttribute="leading" constant="8" id="iqj-bC-bSo"/>
+                                    <constraint firstItem="S0Z-SW-qG7" firstAttribute="centerY" secondItem="qXa-qE-TUz" secondAttribute="centerY" id="nvE-tG-Ljd"/>
+                                    <constraint firstAttribute="height" constant="50" id="riX-sq-U7X"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="uOe-6y-PRs" firstAttribute="trailing" secondItem="qXa-qE-TUz" secondAttribute="trailing" id="3HQ-Fy-e0g"/>
+                            <constraint firstItem="rFj-X0-ftc" firstAttribute="centerY" secondItem="uOe-6y-PRs" secondAttribute="centerY" id="F0e-NY-mkq"/>
+                            <constraint firstItem="qXa-qE-TUz" firstAttribute="top" relation="greaterThanOrEqual" secondItem="rFj-X0-ftc" secondAttribute="bottom" constant="8" symbolic="YES" id="HRd-r0-vDa"/>
+                            <constraint firstItem="qXa-qE-TUz" firstAttribute="leading" secondItem="uOe-6y-PRs" secondAttribute="leading" id="KPf-9j-Ugi"/>
+                            <constraint firstItem="uOe-6y-PRs" firstAttribute="bottom" secondItem="qXa-qE-TUz" secondAttribute="bottom" constant="12" id="sno-fe-o77"/>
+                            <constraint firstItem="rFj-X0-ftc" firstAttribute="width" secondItem="XAp-Xw-bUp" secondAttribute="width" id="xBa-9N-Yu7"/>
+                            <constraint firstItem="rFj-X0-ftc" firstAttribute="centerX" secondItem="uOe-6y-PRs" secondAttribute="centerX" id="yKw-9e-NyI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="uOe-6y-PRs"/>
+                    </view>
+                    <connections>
+                        <outlet property="frameSegmentedControl" destination="seP-sl-GZg" id="SBF-W0-7xo"/>
+                        <outlet property="imageView" destination="rFj-X0-ftc" id="5w7-td-DUG"/>
+                        <outlet property="imageViewHeight" destination="JHB-AM-3dh" id="1VY-bd-D8I"/>
+                        <outlet property="imageViewWidthConstraint" destination="xBa-9N-Yu7" id="foy-W2-a2Q"/>
+                        <outlet property="ratioSegmentedControl" destination="S0Z-SW-qG7" id="YQi-jq-hcL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="trZ-sJ-o7g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="114.50892857142857"/>
+        </scene>
+    </scenes>
+</document>
