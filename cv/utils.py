@@ -19,3 +19,10 @@ def get_three_channel_image_from_one_channel(image):
     three_channel_image[:, :, 1] = image
     three_channel_image[:, :, 2] = image
     return three_channel_image.astype("uint8")
+
+
+def is_image(filename):
+    f = filename.lower()
+    return f.endswith(".png") or f.endswith(".jpg") or \
+        f.endswith(".jpeg") or f.endswith(
+            ".bmp") or f.endswith(".gif") or '.jpg' in f
