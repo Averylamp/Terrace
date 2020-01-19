@@ -73,7 +73,6 @@ extension  KBCropEditorViewController {
     self.view.layoutIfNeeded()
     self.fullImageFrame = self.imageView.frame
         
-    var frameOffset: CGFloat = 30
     self.firstFrameCropper.setupKBFrameView()
     self.secondFrameCropper.setupKBFrameView()
     self.imageView.addSubview(self.firstFrameCropper)
@@ -82,10 +81,12 @@ extension  KBCropEditorViewController {
     self.firstFrameCropper.translatesAutoresizingMaskIntoConstraints = false
     self.secondFrameCropper.translatesAutoresizingMaskIntoConstraints = false
     
+    let fullAssetSize = CGSize(width: self.fullAsset.pixelWidth, height: self.fullAsset.pixelHeight)
+    
     let imageViewSize = self.imageView.frame.size
     let minSide = min(imageViewSize.width, imageViewSize.height)
-    let firstSize = minSide / 2.0 * 0.8
-    let secondSize = minSide / 2.0 * 0.7
+    let firstSize = minSide / 2.0 * 0.9
+    let secondSize = minSide / 2.0 * 0.8
     self.firstFrameCropper.leftConstraint = NSLayoutConstraint(item: self.firstFrameCropper, attribute: .left, relatedBy: .equal,
                                                                toItem: self.imageView, attribute: .left, multiplier: 1.0, constant: imageViewSize.width / 2 - firstSize)
     self.firstFrameCropper.topConstraint = NSLayoutConstraint(item: self.firstFrameCropper, attribute: .top, relatedBy: .equal,
@@ -100,7 +101,6 @@ extension  KBCropEditorViewController {
       self.firstFrameCropper.rightConstraint!,
       self.firstFrameCropper.bottomConstraint!
     ])
-    frameOffset += 30
 
     self.secondFrameCropper.leftConstraint = NSLayoutConstraint(item: self.secondFrameCropper, attribute: .left, relatedBy: .equal,
                                                                toItem: self.imageView, attribute: .left, multiplier: 1.0, constant: imageViewSize.width / 2 - secondSize)
