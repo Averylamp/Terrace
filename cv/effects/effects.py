@@ -12,6 +12,7 @@ from models.models import (
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.animation as animation
+from tqdm import tqdm
 
 from pointcloud import PointClouder
 
@@ -54,8 +55,8 @@ class Effect(object):
             im = plt.imshow(image[:, :, ::-1], animated=True)
             ims.append([im])
 
-        self.ani = animation.ArtistAnimation(fig, ims, interval=50, blit=True,
-                                             repeat_delay=1000)
+        self.ani = animation.ArtistAnimation(fig, ims, interval=1000, blit=True,
+                                             repeat_delay=0)
         if self.output_filename:
             print("Saving animation to {}".format(self.output_filename))
             self.ani.save(self.output_filename)
@@ -87,17 +88,31 @@ class TDKenBurns(Effect):
         path = list(np.linspace(0.0, 0.1, 2)) + \
             list(np.linspace(0.1, -0.1, 4)) + list(np.linspace(-0.1, -0.0, 2))
         # move camera in x direction
-        for x in path:
-            extrinsics = np.identity(4, dtype="float64")
-            extrinsics[0][3] = x
+        print("processing x path")
+        for x in tqdm(path):
+            extrinsics = np.array(
+                [
+                    [1, 0, 0, x],
+                    [0, 1, 0, 0],
+                    [0, 0, 1, 0]
+                ],
+                dtype="float64"
+            )
             image = self.pointclouder.get_image_from_pointcloud(
                 extrinsics=extrinsics
             )
             self.images_sequence.append(image)
         # move camera in y direction
-        for y in path:
-            extrinsics = np.identity(4, dtype="float64")
-            extrinsics[1][3] = y
+        print("processing y path")
+        for y in tqdm(path):
+            extrinsics = np.array(
+                [
+                    [1, 0, 0, 0],
+                    [0, 1, 0, y],
+                    [0, 0, 1, 0]
+                ],
+                dtype="float64"
+            )
             image = self.pointclouder.get_image_from_pointcloud(
                 extrinsics=extrinsics
             )
@@ -133,3 +148,47 @@ class Dolly(Effect):
             # TODO: make this inpainting more robust
             inpainted_image = InpaintModule.get_opencv_inpainted_image(image)
             self.images_sequence.append(inpainted_image)
+
+class MeshTDKenBurns(Effect):
+    """
+    Mesh 3D Ken burns effect.
+    """
+
+    def __init__(self, bgr, depth, show_gui=False):
+        super().__init__(bgr, depth, show_gui=show_gui)
+
+    def generate_image_sequence(self):
+        path = list(np.linspace(0.0, 0.1, 2)) + \
+            list(np.linspace(0.1, -0.1, 4)) + list(np.linspace(-0.1, -0.0, 2))
+        # move camera in x direction
+        print("processing x path")
+        for x in tqdm(path):
+            extrinsics = np.array(
+                [
+                    [1, 0, 0, x],
+                    [0, 1, 0, 0],
+                    [0, 0, 1, 0],
+                    [0, 0, 0, 1]
+                ],
+                dtype="float64"
+            )
+            image = self.pointclouder.get_image_from_mesh(
+                extrinsics=extrinsics
+            )
+            self.images_sequence.append(image[:, :, ::-1])
+        # move camera in y direction
+        print("processing y path")
+        for y in tqdm(path):
+            extrinsics = np.array(
+                [
+                    [1, 0, 0, 0],
+                    [0, 1, 0, y],
+                    [0, 0, 1, 0],
+                    [0, 0, 0, 1]
+                ],
+                dtype="float64"
+            )
+            image = self.pointclouder.get_image_from_mesh(
+                extrinsics=extrinsics
+            )
+            self.images_sequence.append(image[:, :, ::-1])

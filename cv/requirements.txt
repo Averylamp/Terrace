@@ -15,3 +15,6 @@ cython
 open3d-python
 autopep8
 PyQt5
+tqdm
+pyrender
+trimesh

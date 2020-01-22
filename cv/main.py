@@ -22,10 +22,11 @@ from models.models import (
 from effects.effects import (
     TDKenBurns,
     Dolly,
+    MeshTDKenBurns,
     Effect  # base class
 )
-# import matplotlib
-# matplotlib.use("Qt5Agg")
+import matplotlib
+matplotlib.use("Qt5Agg")
 
 
 class Effector(object):
@@ -40,7 +41,8 @@ class Effector(object):
         "3d_ken_burns": TDKenBurns,
         "2d_ken_burns": None,
         "dolly": Dolly,
-        "space_elevator": None
+        "space_elevator": None,
+        "mesh_3d_ken_burns": MeshTDKenBurns,
     }
 
     index_to_type = {
@@ -87,6 +89,8 @@ class Effector(object):
             self.create_data()
         else:
             self.load_data()
+
+        # self.start_gui()
 
         # choose which effect to use and initialize the class
         self.effect_module = self.effects[self.effect](
