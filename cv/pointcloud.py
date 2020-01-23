@@ -48,7 +48,8 @@ class PointClouder(object):
             [
                 [1, 0, 0, 0],
                 [0, 1, 0, 0],
-                [0, 0, 1, 0]
+                [0, 0, 1, 0],
+                [0, 0, 0, 1]
             ],
             dtype="float64"
         )
@@ -140,19 +141,62 @@ class PointClouder(object):
         # print("num filtered faces: {}".format(len(filtered_faces)))
 
         vertices = self.xyz_points.T
-        trimesh_mesh = trimesh.Trimesh(
-            vertices=vertices, faces=faces, vertex_colors=self.color_points, process=False)
-        print("is_watertight: {}".format(trimesh_mesh.is_watertight))
-        print("volumne: {}".format(trimesh_mesh.volume))
-        # trimesh_mesh.export(file_obj="mymesh.ply")
+        # trimesh_mesh = trimesh.Trimesh(
+        #     vertices=vertices, faces=faces, vertex_colors=self.color_points, process=False)
+        # trimesh_mesh = trimesh.Trimesh(
+        #     vertices=vertices, faces=faces, process=False)
+        # print("is_watertight: {}".format(trimesh_mesh.is_watertight))
+        # print("volumne: {}".format(trimesh_mesh.volume))
+        # trimesh_mesh.export(file_obj="testingmesh.obj")
+
+        # handle texture mappings
+        vertex_index_to_texture = []
+        for j in range(0, self.height):
+            for i in range(0, self.width):
+                # vertex_index = (j * self.width) + ij
+                w = i / self.width
+                h = (self.height - j - 1) / self.height
+                vertex_index_to_texture.append(
+                    (w, h)
+                )
+
+        # Write-Overwrites
+        file0 = open("ethan.obj.mtl", "w")  # write mode
+        file0.write("newmtl material_0\n")
+        file0.write("map_Kd fuse.png\n")
+        file0.close()
+
+        file1 = open("ethan.obj", "w")  # write mode
+        file1.write("mtllib ./ethan.obj.mtl\n")
+        for vertex in vertices:
+            x, y, z = vertex
+            file1.write("v {} {} {}\n".format(x, y, z))
+        file1.write("usemtl material_0\n")
+        for w, h in vertex_index_to_texture:
+            file1.write("vt {} {}\n".format(w, h))
+        for face in faces:
+            a, b, c = face
+            a += 1
+            b += 1
+            c += 1
+            file1.write("f {}/{} {}/{} {}/{}\n".format(
+                a, a, b, b, c, c
+            )
+            )
+        file1.close()
+
+        # Fuze trimesh
+        trimesh_mesh = trimesh.load('./ethan.obj')
         # trimesh_mesh.show()
+        # fuze_mesh = pyrender.Mesh.from_trimesh(fuze_trimesh)
+
+        # trimesh_mesh.show()
+        # raise ValueError("stopping")
         # (trimesh_mesh + trimesh_mesh.bounding_box_oriented).show()
 
         mesh = pyrender.Mesh.from_trimesh(trimesh_mesh, smooth=False)
+        self.scene = pyrender.Scene(ambient_light=[1.0, 1.0, 1.0])
 
-        self.scene = pyrender.Scene()
-        # scene.add(mesh)
-        # pyrender.Viewer(scene, use_raymond_lighting=True)
         camera = pyrender.IntrinsicsCamera(
             self.focal_length, self.focal_length, self.width / 2, self.height / 2
         )
@@ -182,10 +226,16 @@ class PointClouder(object):
         # )
         # temppose = extrinsics @ camera_pose
         # scene.add(camera, pose=temppose)
-        light = pyrender.DirectionalLight(
-            intensity=3.0
+        # light = pyrender.SpotLight(
+        #     color=np.ones(3),
+        #     intensity=3.0,
+        #     innerConeAngle=np.pi/16.0,
+        #     outerConeAngle=np.pi/6.0
+        # )
+        light = pyrender.PointLight(
+            color=[1.0, 1.0, 1.0],
+            intensity=0.0
         )
-        # scene.add(light, pose=temppose)
 
         self.nm = pyrender.Node(mesh=mesh, matrix=np.eye(4))
         self.nl = pyrender.Node(light=light, matrix=np.eye(4))
@@ -194,8 +244,11 @@ class PointClouder(object):
         self.scene.add_node(self.nl)
         self.scene.add_node(self.nc)
 
-        # pyrender.Viewer(self.scene, use_raymond_lighting=True,
-        #                 viewport_size=(self.width, self.height))
+        temppose = self.extrinsics @ self.camera_pose
+        self.scene.set_pose(self.nl, pose=temppose)
+        self.scene.set_pose(self.nc, pose=temppose)
+        pyrender.Viewer(self.scene, use_raymond_lighting=True,
+                        viewport_size=(self.width, self.height))
 
         # path = list(np.linspace(0.0, 0.1, 2)) + \
         #     list(np.linspace(0.1, -0.1, 4)) + list(np.linspace(-0.1, -0.0, 2))

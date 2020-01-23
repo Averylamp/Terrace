@@ -16,5 +16,5 @@ open3d-python
 autopep8
 PyQt5
 tqdm
-pyrender
+pyrender==0.1.32
 trimesh

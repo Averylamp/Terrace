@@ -22,7 +22,7 @@ class Effect(object):
     Class for handling effects.
     """
 
-    def __init__(self, bgr, depth, show_gui=False, output_filename=None):
+    def __init__(self, bgr, depth, show_gui=False, output_filename="effects.mp4"):
         """
         Args:
         bgr
