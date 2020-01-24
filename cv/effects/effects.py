@@ -5,6 +5,7 @@ Class related to specific effects.
 # matplotlib.use("Qt5Agg")
 import cv2
 import imageio
+import os
 
 from models.models import (
     InpaintModule
@@ -23,7 +24,7 @@ class Effect(object):
     Class for handling effects.
     """
 
-    def __init__(self, bgr, depth, show_gui=False, output_filename="effect.gif"):
+    def __init__(self, args, bgr, depth, show_gui=False, output_filename=None):
         """
         Args:
         bgr
@@ -31,15 +32,20 @@ class Effect(object):
         show_gui
         output_filename - "effect.mp4" for example
         """
+        # input args
+        self.args = args
         # pointcloud class
-        self.pointclouder = PointClouder(bgr, depth)
+        self.pointclouder = PointClouder(args, bgr, depth)
         # effect image sequence
         self.images_sequence = []
         # store the animation
         self.ani = None
         # params
         self.show_gui = show_gui
-        self.output_filename = output_filename
+        if output_filename:
+            self.output_filename = output_filename
+        else:
+            self.output_filename = args.effect + ".gif"
 
     def generate_image_sequence(self):
         """
@@ -58,7 +64,7 @@ class Effect(object):
 
         if self.output_filename:
             print("Saving animation to {}".format(self.output_filename))
-            imageio.mimsave(self.output_filename, ims)
+            imageio.mimsave(os.path.join(self.args.path, self.output_filename), ims)
 
     def run_effect(self):
         """
@@ -77,8 +83,8 @@ class TDKenBurns(Effect):
     3D Ken burns effect.
     """
 
-    def __init__(self, bgr, depth, show_gui=False):
-        super().__init__(bgr, depth, show_gui=show_gui)
+    def __init__(self, args, bgr, depth, show_gui=False):
+        super().__init__(args, bgr, depth, show_gui=show_gui)
 
     def generate_image_sequence(self):
         path = list(np.linspace(0.0, 0.1, 2)) + \
@@ -120,14 +126,13 @@ class Dolly(Effect):
     Dolly zoom effect.
     """
 
-    def __init__(self, bgr, depth, show_gui=False):
-        super().__init__(bgr, depth, show_gui=show_gui)
+    def __init__(self, args, bgr, depth, show_gui=False):
+        super().__init__(args, bgr, depth, show_gui=show_gui)
 
     def generate_image_sequence(self):
         path = list(np.linspace(0.0, -5.0, 50))
 
         # move camera in z direction
-        # scalar = -10
         for z in path:
             # modify the focal lengths
             intrinsics = self.pointclouder.intrinsics
@@ -145,34 +150,14 @@ class Dolly(Effect):
             inpainted_image = InpaintModule.get_opencv_inpainted_image(image)
             self.images_sequence.append(inpainted_image)
 
-        # # move camera in z direction
-        # path = list(np.linspace(-10.0, 10.0, 20))
-        # scalar = 5
-        # for z in path:
-        #     # modify the focal lengths
-        #     intrinsics = self.pointclouder.intrinsics
-        #     original_focal_length = intrinsics[0][0]
-        #     intrinsics[0][0] = original_focal_length + original_focal_length * (z / scalar)
-        #     intrinsics[1][1] = original_focal_length + original_focal_length * (z / scalar)
-
-        #     extrinsics = np.identity(4, dtype="float64")
-        #     extrinsics[2][3] = z
-        #     image = self.pointclouder.get_image_from_mesh(
-        #         intrinsics=intrinsics, extrinsics=extrinsics
-        #     )
-        #     # TODO: run inpainting after interpolation
-        #     # TODO: make this inpainting more robust
-        #     inpainted_image = InpaintModule.get_opencv_inpainted_image(image)
-        #     self.images_sequence.append(inpainted_image)
-
 
 class MeshTDKenBurns(Effect):
     """
     Mesh 3D Ken burns effect.
     """
 
-    def __init__(self, bgr, depth, show_gui=False):
-        super().__init__(bgr, depth, show_gui=show_gui)
+    def __init__(self, args, bgr, depth, show_gui=False):
+        super().__init__(args, bgr, depth, show_gui=show_gui)
 
     def generate_image_sequence(self):
         path = list(np.linspace(0.0, 0.2, 10)) + \

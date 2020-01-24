@@ -161,7 +161,7 @@ def test_simple(args):
             depth = resize(scaled_disp.cpu().numpy()[
                            0, 0, :, :], (new_height, needed_width))[:, :new_width]
             # TODO: make this scalar more informed
-            depth = ((0.1 * focal_length) / depth) * 0.1
+            depth = ((0.1 * focal_length) / depth) * 0.01
             np.save(os.path.join(output_directory, "depth.npy"), depth)
 
             # Saving colormapped depth image

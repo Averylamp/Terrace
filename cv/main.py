@@ -53,7 +53,8 @@ class Effector(object):
         2: "depth"
     }
 
-    def __init__(self, path, effect):
+    def __init__(self, args, path, effect):
+        # TODO: switch to only using args
         """
         Path can be folder or image.
         if folder -> get bgr, masks, and depth from it
@@ -62,6 +63,7 @@ class Effector(object):
         effect -> the type of effect to create
         type -> folder or image
         """
+        self.args = args
         self.path = path
         self.effect = effect
 
@@ -101,7 +103,7 @@ class Effector(object):
 
         # choose which effect to use and initialize the class
         self.effect_module = self.effects[self.effect](
-            self.bgr, self.depth, show_gui=True
+            self.args, self.bgr, self.depth, show_gui=True
         )
         assert isinstance(self.effect_module, Effect)
 
@@ -129,11 +131,13 @@ class Effector(object):
                     6: Image.ROTATE_270,
                     8: Image.ROTATE_90
                 }
-                image = image.transpose(rotations[orientation])
+                if orientation in rotations:
+                    image = image.transpose(rotations[orientation])
         data = list(image.getdata())
         image_without_exif = Image.new(image.mode, image.size)
         image_without_exif.putdata(data)
-        original_image_path = os.path.join(os.path.dirname(self.path), "original.png")
+        original_image_path = os.path.join(
+            os.path.dirname(self.path), "original.png")
         image_without_exif.save(
             original_image_path
         )
@@ -146,9 +150,9 @@ class Effector(object):
 
         # Runs an image through depth network (monodepth2 for now).
         cmd = ("venv/bin/python data_science/monodepth2/terrace.py"
-            " --image_path {} --model_name data_science/monodepth2/models/mono+stereo_640x192"
-            " --image_width_resolution {}"
-            ).format(
+               " --image_path {} --model_name data_science/monodepth2/models/mono+stereo_640x192"
+               " --image_width_resolution {}"
+               ).format(
             original_image_path, 480)
         print("Running: \n\n{}\n\n".format(cmd))
         os.system(cmd)
@@ -270,4 +274,4 @@ if __name__ == "__main__":
         sys.exit()
 
     print("Running with filepath: {}".format(args.path))
-    effector = Effector(args.path, args.effect)
+    effector = Effector(args, args.path, args.effect)

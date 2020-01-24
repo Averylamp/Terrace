@@ -36,7 +36,11 @@ pip install .
 
 # main program
 ```
-python main.py --path inputs/KDWm2mJrR7s_25100000/ --effect mesh_3d_ken_burns
+# create data (with input image, raw.png)
+python main.py --path inputs/00004/raw.png
+
+# run with created data
+python main.py --path inputs/00004/ --effect mesh_3d_ken_burns
 ```
 
 # detectron2 mask-rcnn on image

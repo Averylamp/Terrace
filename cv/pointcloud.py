@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import trimesh
 import sys
+import os
 import pyrender
 import matplotlib
 from tqdm import tqdm
@@ -20,8 +21,9 @@ class PointClouder(object):
     This is used to create novel views of a point cloud.
     """
 
-    def __init__(self, bgr, depth):
+    def __init__(self, args, bgr, depth):
         # TODO: this will need more data than just the image and depth
+        self.args = args
         self.bgr = bgr
         self.depth = depth
         self.height, self.width = self.bgr.shape[:2]
@@ -159,17 +161,18 @@ class PointClouder(object):
 
         # Create material.
         # TODO: make the string/filename randomly generated and unique
-        file0 = open("image.obj.mtl", "w")  # write mode
+        file0 = open(os.path.join(self.args.path, "triangle_mesh.obj.mtl"), "w")  # write mode
         file0.write("newmtl material_0\n")
         # Save image here.
-        cv2.imwrite("image.png", self.bgr)
-        file0.write("map_Kd image.png\n")
+        cv2.imwrite(os.path.join(self.args.path, "triangle_mesh.png"), self.bgr)
+        file0.write("map_Kd triangle_mesh.png\n")
         file0.close()
 
         # https://en.wikipedia.org/wiki/Wavefront_.obj_file
         # https://github.com/mmatl/pyrender/blob/master/examples/models/fuze.obj
-        file1 = open("image.obj", "w")  # write mode
-        file1.write("mtllib ./image.obj.mtl\n")
+        obj_path = os.path.join(self.args.path, "triangle_mesh.obj")
+        file1 = open(obj_path, "w")  # write mode
+        file1.write("mtllib ./triangle_mesh.obj.mtl\n")
         for vertex in vertices:
             x, y, z = vertex
             file1.write("v {} {} {}\n".format(x, y, z))
@@ -188,7 +191,7 @@ class PointClouder(object):
         file1.close()
 
         # Load the trimesh from OBJ file.
-        trimesh_mesh = trimesh.load('./image.obj')
+        trimesh_mesh = trimesh.load(obj_path)
         # trimesh_mesh.show()
 
         mesh = pyrender.Mesh.from_trimesh(trimesh_mesh, smooth=False)
@@ -236,7 +239,7 @@ class PointClouder(object):
         if not isinstance(intrinsics, (np.ndarray, np.generic)):
             intrinsics = self.intrinsics
         if not isinstance(extrinsics, (np.ndarray, np.generic)):
-            extrinsics = self.extrinsics
+            extrinsics = self.extrinsics[:3, :4]
         image = np.zeros((self.height, self.width, 3), dtype="uint8")
 
         uv_points = intrinsics @ (extrinsics @ self.xyzw_points)
@@ -280,8 +283,6 @@ class PointClouder(object):
         for x, y, value in zip(x_to_interpolate, y_to_interpolate, interpolated_image):
             image[y, x] = value
 
-        # print(interpolated_image)
-        # raise ValueError('stop')
         return image
 
     def get_image_from_mesh(self, intrinsics=None, extrinsics=None):
