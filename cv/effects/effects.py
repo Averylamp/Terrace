@@ -15,6 +15,7 @@ import numpy as np
 import matplotlib.animation as animation
 from tqdm import tqdm
 import multiprocessing
+import threading
 from pointcloud import PointClouder
 
 
@@ -61,7 +62,8 @@ class Effect(object):
         
         for count in range(len(args)):
             arg = args[count]
-            processes.append(multiprocessing.Process(target=process_image, args=(self.images_sequence, count, func, arg)))
+            # processes.append(multiprocessing.Process(target=process_image, args=(self.images_sequence, count, func, arg)))
+            processes.append(threading.Thread(target=process_image, args=(self.images_sequence, count, func, arg)))
 
         for p in processes:
             p.start()
