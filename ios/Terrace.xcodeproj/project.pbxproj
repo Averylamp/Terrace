@@ -45,6 +45,10 @@
 		BBC3296123C833DA004922B8 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC3296023C833DA004922B8 /* R.generated.swift */; };
 		BBCB259C23C733BA0047635B /* MAECVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = BBCB259B23C733BA0047635B /* MAECVWrapper.mm */; };
 		BBCB259E23C734160047635B /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCB259D23C734160047635B /* opencv2.framework */; };
+		BBF3758323D9CA4000AC80E2 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF3758223D9CA4000AC80E2 /* CameraPreviewView.swift */; };
+		BBF3758523D9CA7900AC80E2 /* MainCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF3758423D9CA7900AC80E2 /* MainCameraViewController.swift */; };
+		BBF3758723D9CAF300AC80E2 /* ItemSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF3758623D9CAF300AC80E2 /* ItemSelectionViewController.swift */; };
+		BBF3758923D9CB1600AC80E2 /* PhotoCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF3758823D9CB1600AC80E2 /* PhotoCaptureDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +121,10 @@
 		BBCB259B23C733BA0047635B /* MAECVWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MAECVWrapper.mm; sourceTree = "<group>"; };
 		BBCB259D23C734160047635B /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		BBCB259F23C734570047635B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		BBF3758223D9CA4000AC80E2 /* CameraPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		BBF3758423D9CA7900AC80E2 /* MainCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCameraViewController.swift; sourceTree = "<group>"; };
+		BBF3758623D9CAF300AC80E2 /* ItemSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSelectionViewController.swift; sourceTree = "<group>"; };
+		BBF3758823D9CB1600AC80E2 /* PhotoCaptureDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureDelegate.swift; sourceTree = "<group>"; };
 		DBB0ED0608D5134FF8FA8188 /* Pods-Terrace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Terrace.release.xcconfig"; path = "Target Support Files/Pods-Terrace/Pods-Terrace.release.xcconfig"; sourceTree = "<group>"; };
 		DC19405CA0FE6C0EC6A4780C /* Pods-ImagearTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImagearTests.debug.xcconfig"; path = "Target Support Files/Pods-ImagearTests/Pods-ImagearTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F7B7B61B3969AD3F35F127AA /* Pods-Imagear.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imagear.debug.xcconfig"; path = "Target Support Files/Pods-Imagear/Pods-Imagear.debug.xcconfig"; sourceTree = "<group>"; };
@@ -255,6 +263,10 @@
 		BB80ED2B23C8A2570000987D /* Main View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				BBF3758223D9CA4000AC80E2 /* CameraPreviewView.swift */,
+				BBF3758423D9CA7900AC80E2 /* MainCameraViewController.swift */,
+				BBF3758623D9CAF300AC80E2 /* ItemSelectionViewController.swift */,
+				BBF3758823D9CB1600AC80E2 /* PhotoCaptureDelegate.swift */,
 				BB907C6223C72058000E5B0F /* MainViewController.swift */,
 				BB907C6423C72058000E5B0F /* MainViewController.storyboard */,
 			);
@@ -633,6 +645,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB907C6323C72058000E5B0F /* MainViewController.swift in Sources */,
+				BBF3758323D9CA4000AC80E2 /* CameraPreviewView.swift in Sources */,
 				BB80ED2E23C8A2940000987D /* MainNavigationController.swift in Sources */,
 				BB05FC7223CEC84B00BBC7C5 /* KBCropEditorViewController.swift in Sources */,
 				BB05FC8123CF17BD00BBC7C5 /* KBFrameCropView.swift in Sources */,
@@ -645,6 +658,7 @@
 				BB907C5F23C72058000E5B0F /* AppDelegate.swift in Sources */,
 				BBC3296123C833DA004922B8 /* R.generated.swift in Sources */,
 				BB60120F23CAFB6C00794BE4 /* PHPhotoPickerNavigationViewController.swift in Sources */,
+				BBF3758923D9CB1600AC80E2 /* PhotoCaptureDelegate.swift in Sources */,
 				BB96E2C123D41E060000262E /* TerraceKenBurnsAPI.swift in Sources */,
 				BBCB259C23C733BA0047635B /* MAECVWrapper.mm in Sources */,
 				BB60121823CB084200794BE4 /* PHPhotoPickerAlbumTableViewCell.swift in Sources */,
@@ -653,7 +667,9 @@
 				BB60120723CAF9B000794BE4 /* PHPhotoPickerCollectionViewController.swift in Sources */,
 				BB907C6123C72058000E5B0F /* SceneDelegate.swift in Sources */,
 				BB60121623CAFFEC00794BE4 /* PHPhotoPickerDelegate.swift in Sources */,
+				BBF3758523D9CA7900AC80E2 /* MainCameraViewController.swift in Sources */,
 				BB05FC7423CEC85A00BBC7C5 /* KBPreviewViewController.swift in Sources */,
+				BBF3758723D9CAF300AC80E2 /* ItemSelectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
