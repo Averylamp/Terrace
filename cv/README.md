@@ -6,34 +6,41 @@ Documentation for all CV stuff, including the image framework.
 
 ```
 # create pip virtual environment
-python3 -m venv venv
+`python3 -m venv venv`
 
 # start virtual environment
-source venv/bin/activate
+`source venv/bin/activate`
 
 # close virtual environment
-deactivate
+`deactivate`
 
 # install packages
+```
 pip install --upgrade pip
 pip install -r requirements.txt
+brew install freetype
+```
 
 # finish installing pyrender
-https://pyrender.readthedocs.io/en/latest/install/index.html
+```
+git clone https://github.com/mmatl/pyglet.git
 cd pyglet
 pip install .
+```
 
 # install Kernel to use with notebooks
-python -m ipykernel install --user --display-name "imagear"
-```
+`python -m ipykernel install --user --display-name "imagear"`
+
 
 # Usage
 
-```
 # main program
+```
 python main.py --path inputs/KDWm2mJrR7s_25100000/ --effect mesh_3d_ken_burns
+```
 
 # detectron2 mask-rcnn on image
+```
 cd data_science/detectron2
 python demo/demo.py --config-file configs/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml   --input ../../inputs/KDWm2mJrR7s_25100000/rgb.png --opts MODEL.WEIGHTS detectron2://COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x/137849600/model_final_f10217.pkl MODEL.DEVICE cpu
 ```
