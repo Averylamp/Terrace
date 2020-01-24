@@ -89,6 +89,8 @@ class Effector(object):
         # depends on the input
         if utils.is_image(self.path):
             self.create_data()
+            print("Created data and exiting.")
+            sys.exit()
         else:
             self.load_data()
 
@@ -111,19 +113,29 @@ class Effector(object):
         Create data with modeler.
         """
         image_name = os.path.basename(self.path)
-        # assert image_name == "original.png"
+        assert image_name == "raw.png"
         print("Creating data for image: {}".format(image_name))
 
         # Handle EXIF orientation data.
-        # https://stackoverflow.com/questions/4228530/pil-thumbnail-is-rotating-my-image
+        # https://bitbucket.org/effbot/pil-2009-raclette/issues/33/unexpected-rotation-on-saving-a-jpeg-with
         image = Image.open(self.path)
-        # print(image._getexif().items())
-        exif = dict((ExifTags.TAGS[k], v)
-                    for k, v in image._getexif().items() if k in ExifTags.TAGS)
-        if not exif['Orientation']:
-            image = image.rotate(90, expand=True)
-        image.save(
-            "inputs/00000/original.png"
+        if hasattr(image, '_getexif'):
+            orientation = 0x0112
+            exif = image._getexif()
+            if exif is not None:
+                orientation = exif[orientation]
+                rotations = {
+                    3: Image.ROTATE_180,
+                    6: Image.ROTATE_270,
+                    8: Image.ROTATE_90
+                }
+                image = image.transpose(rotations[orientation])
+        data = list(image.getdata())
+        image_without_exif = Image.new(image.mode, image.size)
+        image_without_exif.putdata(data)
+        original_image_path = os.path.join(os.path.dirname(self.path), "original.png")
+        image_without_exif.save(
+            original_image_path
         )
 
         # Load image -> write to input for network. (w/ padding)
@@ -137,48 +149,27 @@ class Effector(object):
             " --image_path {} --model_name data_science/monodepth2/models/mono+stereo_640x192"
             " --image_width_resolution {}"
             ).format(
-            self.path, 480)
+            original_image_path, 480)
         print("Running: \n\n{}\n\n".format(cmd))
         os.system(cmd)
 
         # TODO: handle creating mask later. we don't currently use it
-        pass
 
     def load_data(self):
         """
         Load data.
         """
-        print(self.path)
         self.bgr = cv2.imread(
             os.path.join(self.path, "rgb.png")
         )
-        h, w = self.bgr.shape[:2]
-        # self.masks = np.load(
-        #     os.path.join(self.path, "masks.npy")
-        # )
-        # self.depth = np.load(
-        #     os.path.join(self.path, "depth.npy")
-        # )[0,0,:,:]
         self.depth = np.load(
             os.path.join(self.path, "depth.npy")
         )
-        # 192, 640
-        print("HELLO")
-        print(self.depth.shape)
-        # aspect ratio
-        depth_width = int((w / 1800) * 640)
-        self.depth = self.depth[0, 0, :, :depth_width]
-        # self.masks = self.depth
-        print(self.bgr.shape[:2])
-        self.depth = resize(self.depth, self.bgr.shape[:2])
-        # depth = baseline * focal / disparity
-        h, w = self.bgr.shape[:2]
-        max_width_height = max(w, h)
-        focal_length = 1.2 * max_width_height
-        self.depth = ((0.1 * focal_length) / self.depth) * 0.1
-        print(self.bgr.shape)
-        print(self.depth.shape)
-        self.masks = self.depth
+        # TODO: eventually bring back mask usage
+        # self.masks = np.load(
+        #     os.path.join(self.path, "masks.npy")
+        # )
+        self.masks = np.zeros(self.depth.shape)
 
     def get_type_from_x_location(self, x):
         height, width, _ = self.bgr.shape
