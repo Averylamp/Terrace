@@ -18,6 +18,11 @@ deactivate
 pip install --upgrade pip
 pip install -r requirements.txt
 
+# finish installing pyrender
+https://pyrender.readthedocs.io/en/latest/install/index.html
+cd pyglet
+pip install .
+
 # install Kernel to use with notebooks
 python -m ipykernel install --user --display-name "imagear"
 ```

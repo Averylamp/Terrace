@@ -161,7 +161,9 @@ class PointClouder(object):
         # TODO: make the string/filename randomly generated and unique
         file0 = open("image.obj.mtl", "w")  # write mode
         file0.write("newmtl material_0\n")
-        file0.write("map_Kd fuse.png\n")
+        # Save image here.
+        cv2.imwrite("image.png", self.bgr)
+        file0.write("map_Kd image.png\n")
         file0.close()
 
         # https://en.wikipedia.org/wiki/Wavefront_.obj_file
@@ -288,6 +290,14 @@ class PointClouder(object):
         if not isinstance(extrinsics, (np.ndarray, np.generic)):
             extrinsics = self.extrinsics
         image = np.zeros((self.height, self.width, 3), dtype="uint8")
+
+        # set the camera intrinsics
+        self.scene.remove_node(self.nc)
+        camera = pyrender.IntrinsicsCamera(
+            intrinsics[0][0], intrinsics[1][1], self.width / 2, self.height / 2
+        )
+        self.nc = pyrender.Node(camera=camera, matrix=np.eye(4))
+        self.scene.add_node(self.nc)
 
         temppose = extrinsics @ self.camera_pose
         self.scene.set_pose(self.nl, pose=temppose)

@@ -11,11 +11,13 @@ import numpy as np
 import os
 import sys
 import argparse
+from PIL import Image
 import cv2
 import matplotlib.pyplot as plt
 from open3d.open3d.geometry import create_rgbd_image_from_color_and_depth
 import time
 from scipy.spatial.transform import Rotation as R
+from skimage.transform import resize
 from models.models import (
     Modeler
 )
@@ -90,6 +92,8 @@ class Effector(object):
         else:
             self.load_data()
 
+        # raise ValueError("create_data() experiments")
+
         # TODO: make this an option
         # self.start_gui()
 
@@ -106,21 +110,73 @@ class Effector(object):
         """
         Create data with modeler.
         """
-        pass
+        image_name = os.path.basename(self.path)
+        # assert image_name == "original.png"
+        print("Creating data for image: {}".format(image_name))
+
+        # Handle EXIF orientation data.
+        # https://stackoverflow.com/questions/4228530/pil-thumbnail-is-rotating-my-image
+        # image = Image.open(self.path)
+        # print(image._getexif().items())
+        # exif = dict((ExifTags.TAGS[k], v)
+        # for k, v in img._getexif().items() if k in ExifTags.TAGS)
+        # if not exif['Orientation']:
+        #     image = image.rotate(90, expand=True)
+        # image.save(self.path)
+
+    # Load image -> write to input for network. (w/ padding)
+    # original_image
+    # resized_image -> rgb.png
+    # resized_image_with_padding -> monodepth2
+    # resized_image_with_padding_disp -> depth.npy in Terrace format (requires resize and crop)
+
+    # Runs an image through depth network (monodepth2 for now).
+    cmd = ("venv/bin/python data_science/monodepth2/terrace.py"
+           " --image_path {} --model_name data_science/monodepth2/models/mono+stereo_640x192"
+           " --image_width_resolution {}"
+           ).format(
+        self.path, 480)
+    print("Running: \n\n{}\n\n".format(cmd))
+    os.system(cmd)
+
+    # TODO: handle creating mask later. we don't currently use it
+    pass
 
     def load_data(self):
         """
         Load data.
         """
+        print(self.path)
         self.bgr = cv2.imread(
             os.path.join(self.path, "rgb.png")
         )
-        self.masks = np.load(
-            os.path.join(self.path, "masks.npy")
-        )
+        h, w = self.bgr.shape[:2]
+        # self.masks = np.load(
+        #     os.path.join(self.path, "masks.npy")
+        # )
+        # self.depth = np.load(
+        #     os.path.join(self.path, "depth.npy")
+        # )[0,0,:,:]
         self.depth = np.load(
             os.path.join(self.path, "depth.npy")
         )
+        # 192, 640
+        print("HELLO")
+        print(self.depth.shape)
+        # aspect ratio
+        depth_width = int((w / 1800) * 640)
+        self.depth = self.depth[0, 0, :, :depth_width]
+        # self.masks = self.depth
+        print(self.bgr.shape[:2])
+        self.depth = resize(self.depth, self.bgr.shape[:2])
+        # depth = baseline * focal / disparity
+        h, w = self.bgr.shape[:2]
+        max_width_height = max(w, h)
+        focal_length = 1.2 * max_width_height
+        self.depth = ((0.1 * focal_length) / self.depth) * 0.1
+        print(self.bgr.shape)
+        print(self.depth.shape)
+        self.masks = self.depth
 
     def get_type_from_x_location(self, x):
         height, width, _ = self.bgr.shape

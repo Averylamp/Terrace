@@ -4,6 +4,7 @@ Class related to specific effects.
 # import matplotlib
 # matplotlib.use("Qt5Agg")
 import cv2
+import imageio
 
 from models.models import (
     InpaintModule
@@ -22,7 +23,7 @@ class Effect(object):
     Class for handling effects.
     """
 
-    def __init__(self, bgr, depth, show_gui=False, output_filename="effect.mp4"):
+    def __init__(self, bgr, depth, show_gui=False, output_filename="effect.gif"):
         """
         Args:
         bgr
@@ -48,24 +49,16 @@ class Effect(object):
 
     def produce_animation(self):
         print("Producing animation")
-        fig = plt.figure()
-        # https://stackoverflow.com/questions/15882395/matplotlib-animation-how-to-remove-white-margin
-        fig.subplots_adjust(left=0, bottom=0, right=1, top=1, wspace=None, hspace=None)
+        # https://stackoverflow.com/questions/753190/programmatically-generate-video-or-animated-gif-in-python
         ims = []
-        plt.axis('off')
         for image in self.images_sequence:
             # need to reverse bgr to rgb
-            im = plt.imshow(image[:, :, ::-1], aspect='auto', animated=True)
-            ims.append([im])
+            # ims.append(image[:, :, ::-1])
+            ims.append(image)
 
-        self.ani = animation.ArtistAnimation(fig, ims, interval=100, blit=True,
-                                             repeat_delay=0)
         if self.output_filename:
             print("Saving animation to {}".format(self.output_filename))
-            self.ani.save(self.output_filename)
-        if self.show_gui:
-            print("Showing gui")
-            plt.show()
+            imageio.mimsave(self.output_filename, ims)
 
     def run_effect(self):
         """
@@ -131,26 +124,47 @@ class Dolly(Effect):
         super().__init__(bgr, depth, show_gui=show_gui)
 
     def generate_image_sequence(self):
-        path = list(np.linspace(0.0, -0.5, 10))
+        path = list(np.linspace(0.0, -5.0, 50))
 
         # move camera in z direction
-        scalar = -1.0
+        # scalar = -10
         for z in path:
             # modify the focal lengths
             intrinsics = self.pointclouder.intrinsics
             original_focal_length = intrinsics[0][0]
-            intrinsics[0][0] = original_focal_length + (scalar * z)
-            intrinsics[1][1] = original_focal_length + (scalar * z)
+            intrinsics[0][0] = original_focal_length - z
+            intrinsics[1][1] = original_focal_length - z
 
             extrinsics = np.identity(4, dtype="float64")
             extrinsics[2][3] = z
-            image = self.pointclouder.get_image_from_pointcloud(
-                extrinsics=extrinsics
+            image = self.pointclouder.get_image_from_mesh(
+                intrinsics=intrinsics, extrinsics=extrinsics
             )
             # TODO: run inpainting after interpolation
             # TODO: make this inpainting more robust
             inpainted_image = InpaintModule.get_opencv_inpainted_image(image)
             self.images_sequence.append(inpainted_image)
+
+        # # move camera in z direction
+        # path = list(np.linspace(-10.0, 10.0, 20))
+        # scalar = 5
+        # for z in path:
+        #     # modify the focal lengths
+        #     intrinsics = self.pointclouder.intrinsics
+        #     original_focal_length = intrinsics[0][0]
+        #     intrinsics[0][0] = original_focal_length + original_focal_length * (z / scalar)
+        #     intrinsics[1][1] = original_focal_length + original_focal_length * (z / scalar)
+
+        #     extrinsics = np.identity(4, dtype="float64")
+        #     extrinsics[2][3] = z
+        #     image = self.pointclouder.get_image_from_mesh(
+        #         intrinsics=intrinsics, extrinsics=extrinsics
+        #     )
+        #     # TODO: run inpainting after interpolation
+        #     # TODO: make this inpainting more robust
+        #     inpainted_image = InpaintModule.get_opencv_inpainted_image(image)
+        #     self.images_sequence.append(inpainted_image)
+
 
 class MeshTDKenBurns(Effect):
     """
@@ -162,7 +176,8 @@ class MeshTDKenBurns(Effect):
 
     def generate_image_sequence(self):
         path = list(np.linspace(0.0, 0.2, 10)) + \
-            list(np.linspace(0.2, -0.2, 20)) + list(np.linspace(-0.2, -0.0, 10))
+            list(np.linspace(0.2, -0.2, 20)) + \
+            list(np.linspace(-0.2, -0.0, 10))
         # move camera in x direction
         print("processing x path")
         for x in tqdm(path):
@@ -178,7 +193,7 @@ class MeshTDKenBurns(Effect):
             image = self.pointclouder.get_image_from_mesh(
                 extrinsics=extrinsics
             )
-            self.images_sequence.append(image[:, :, ::-1])
+            self.images_sequence.append(image)
         # move camera in y direction
         print("processing y path")
         for y in tqdm(path):
@@ -194,4 +209,4 @@ class MeshTDKenBurns(Effect):
             image = self.pointclouder.get_image_from_mesh(
                 extrinsics=extrinsics
             )
-            self.images_sequence.append(image[:, :, ::-1])
+            self.images_sequence.append(image)
