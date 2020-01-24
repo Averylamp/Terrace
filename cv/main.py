@@ -148,37 +148,15 @@ class Effector(object):
         """
         Load data.
         """
-        print(self.path)
         self.bgr = cv2.imread(
             os.path.join(self.path, "rgb.png")
         )
-        h, w = self.bgr.shape[:2]
-        # self.masks = np.load(
-        #     os.path.join(self.path, "masks.npy")
-        # )
-        # self.depth = np.load(
-        #     os.path.join(self.path, "depth.npy")
-        # )[0,0,:,:]
+        self.masks = np.load(
+            os.path.join(self.path, "masks.npy")
+        )
         self.depth = np.load(
             os.path.join(self.path, "depth.npy")
         )
-        # 192, 640
-        print("HELLO")
-        print(self.depth.shape)
-        # aspect ratio
-        depth_width = int((w / 1800) * 640)
-        self.depth = self.depth[0, 0, :, :depth_width]
-        # self.masks = self.depth
-        print(self.bgr.shape[:2])
-        self.depth = resize(self.depth, self.bgr.shape[:2])
-        # depth = baseline * focal / disparity
-        h, w = self.bgr.shape[:2]
-        max_width_height = max(w, h)
-        focal_length = 1.2 * max_width_height
-        self.depth = ((0.1 * focal_length) / self.depth) * 0.1
-        print(self.bgr.shape)
-        print(self.depth.shape)
-        self.masks = self.depth
 
     def get_type_from_x_location(self, x):
         height, width, _ = self.bgr.shape
