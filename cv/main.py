@@ -11,7 +11,7 @@ import numpy as np
 import os
 import sys
 import argparse
-from PIL import Image
+from PIL import Image, ExifTags
 import cv2
 import matplotlib.pyplot as plt
 from open3d.open3d.geometry import create_rgbd_image_from_color_and_depth
@@ -116,31 +116,33 @@ class Effector(object):
 
         # Handle EXIF orientation data.
         # https://stackoverflow.com/questions/4228530/pil-thumbnail-is-rotating-my-image
-        # image = Image.open(self.path)
+        image = Image.open(self.path)
         # print(image._getexif().items())
-        # exif = dict((ExifTags.TAGS[k], v)
-        # for k, v in img._getexif().items() if k in ExifTags.TAGS)
-        # if not exif['Orientation']:
-        #     image = image.rotate(90, expand=True)
-        # image.save(self.path)
+        exif = dict((ExifTags.TAGS[k], v)
+                    for k, v in image._getexif().items() if k in ExifTags.TAGS)
+        if not exif['Orientation']:
+            image = image.rotate(90, expand=True)
+        image.save(
+            "inputs/00000/original.png"
+        )
 
-    # Load image -> write to input for network. (w/ padding)
-    # original_image
-    # resized_image -> rgb.png
-    # resized_image_with_padding -> monodepth2
-    # resized_image_with_padding_disp -> depth.npy in Terrace format (requires resize and crop)
+        # Load image -> write to input for network. (w/ padding)
+        # original_image
+        # resized_image -> rgb.png
+        # resized_image_with_padding -> monodepth2
+        # resized_image_with_padding_disp -> depth.npy in Terrace format (requires resize and crop)
 
-    # Runs an image through depth network (monodepth2 for now).
-    cmd = ("venv/bin/python data_science/monodepth2/terrace.py"
-           " --image_path {} --model_name data_science/monodepth2/models/mono+stereo_640x192"
-           " --image_width_resolution {}"
-           ).format(
-        self.path, 480)
-    print("Running: \n\n{}\n\n".format(cmd))
-    os.system(cmd)
+        # Runs an image through depth network (monodepth2 for now).
+        cmd = ("venv/bin/python data_science/monodepth2/terrace.py"
+            " --image_path {} --model_name data_science/monodepth2/models/mono+stereo_640x192"
+            " --image_width_resolution {}"
+            ).format(
+            self.path, 480)
+        print("Running: \n\n{}\n\n".format(cmd))
+        os.system(cmd)
 
-    # TODO: handle creating mask later. we don't currently use it
-    pass
+        # TODO: handle creating mask later. we don't currently use it
+        pass
 
     def load_data(self):
         """
