@@ -26,7 +26,7 @@ python -m ipykernel install --user --display-name "imagear"
 
 ```
 # main program
-python main.py --path inputs/KDWm2mJrR7s_25100000/
+python main.py --path inputs/KDWm2mJrR7s_25100000/ --effect mesh_3d_ken_burns
 
 # detectron2 mask-rcnn on image
 cd data_science/detectron2

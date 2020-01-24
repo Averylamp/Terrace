@@ -90,6 +90,7 @@ class Effector(object):
         else:
             self.load_data()
 
+        # TODO: make this an option
         # self.start_gui()
 
         # choose which effect to use and initialize the class
@@ -100,8 +101,6 @@ class Effector(object):
 
         # run the effect
         self.effect_module.run_effect()
-
-        cv2.waitKey(0)
 
     def create_data(self):
         """
@@ -183,16 +182,6 @@ class Effector(object):
         # https://github.com/intel-isl/Open3D/issues/1024#issuecomment-506206087
         rgbd_image = create_rgbd_image_from_color_and_depth(
             color_raw, depth_raw)
-
-        # this breaks the code:
-        # https://github.com/intel-isl/Open3D/issues/691
-        # plt.subplot(1, 2, 1)
-        # plt.title('grayscale image')
-        # plt.imshow(rgbd_image.color)
-        # plt.subplot(1, 2, 2)
-        # plt.title('depth image')∏
-        # plt.imshow(rgbd_image.depth)
-        # plt.show()
 
         # https://github.com/intel-isl/Open3D/issues/1024#issuecomment-515235233
         # https://github.com/openMVG/openMVG/issues/669

@@ -117,19 +117,21 @@ class PointClouder(object):
             points[i]-points[j]
         )
 
-    # def get_filtered_faces(self, faces):
-    #     filtered_faces = []
-    #     for face in faces:
-    #         i, j, k = face
-    #         thresh = 100.0
-    #         if self.get_distance_between_points(i, j) > thresh:
-    #             continue
-    #         elif self.get_distance_between_points(j, k) > thresh:
-    #             continue
-    #         elif self.get_distance_between_points(i, k) > thresh:
-    #             continue
-    #         filtered_faces.append(face)
-    #     return filtered_faces
+    def get_filtered_faces(self, faces):
+        """remove edges that are longer than they should be
+        """
+        filtered_faces = []
+        for face in faces:
+            i, j, k = face
+            thresh = 100.0
+            if self.get_distance_between_points(i, j) > thresh:
+                continue
+            elif self.get_distance_between_points(j, k) > thresh:
+                continue
+            elif self.get_distance_between_points(i, k) > thresh:
+                continue
+            filtered_faces.append(face)
+        return filtered_faces
 
     def create_mesh(self):
         """Use the points to create a mesh.
@@ -137,17 +139,12 @@ class PointClouder(object):
         print("create_mesh")
         faces = self.get_faces()
         print("num faces: {}".format(len(faces)))
+
+        # TODO: perform face filtering to remove long edges in Z direction
         # filtered_faces = self.get_filtered_faces(faces)
         # print("num filtered faces: {}".format(len(filtered_faces)))
 
         vertices = self.xyz_points.T
-        # trimesh_mesh = trimesh.Trimesh(
-        #     vertices=vertices, faces=faces, vertex_colors=self.color_points, process=False)
-        # trimesh_mesh = trimesh.Trimesh(
-        #     vertices=vertices, faces=faces, process=False)
-        # print("is_watertight: {}".format(trimesh_mesh.is_watertight))
-        # print("volumne: {}".format(trimesh_mesh.volume))
-        # trimesh_mesh.export(file_obj="testingmesh.obj")
 
         # handle texture mappings
         vertex_index_to_texture = []
@@ -160,14 +157,17 @@ class PointClouder(object):
                     (w, h)
                 )
 
-        # Write-Overwrites
-        file0 = open("ethan.obj.mtl", "w")  # write mode
+        # Create material.
+        # TODO: make the string/filename randomly generated and unique
+        file0 = open("image.obj.mtl", "w")  # write mode
         file0.write("newmtl material_0\n")
         file0.write("map_Kd fuse.png\n")
         file0.close()
 
-        file1 = open("ethan.obj", "w")  # write mode
-        file1.write("mtllib ./ethan.obj.mtl\n")
+        # https://en.wikipedia.org/wiki/Wavefront_.obj_file
+        # https://github.com/mmatl/pyrender/blob/master/examples/models/fuze.obj
+        file1 = open("image.obj", "w")  # write mode
+        file1.write("mtllib ./image.obj.mtl\n")
         for vertex in vertices:
             x, y, z = vertex
             file1.write("v {} {} {}\n".format(x, y, z))
@@ -185,17 +185,12 @@ class PointClouder(object):
             )
         file1.close()
 
-        # Fuze trimesh
-        trimesh_mesh = trimesh.load('./ethan.obj')
+        # Load the trimesh from OBJ file.
+        trimesh_mesh = trimesh.load('./image.obj')
         # trimesh_mesh.show()
-        # fuze_mesh = pyrender.Mesh.from_trimesh(fuze_trimesh)
-
-        # trimesh_mesh.show()
-        # raise ValueError("stopping")
-        # (trimesh_mesh + trimesh_mesh.bounding_box_oriented).show()
 
         mesh = pyrender.Mesh.from_trimesh(trimesh_mesh, smooth=False)
-        self.scene = pyrender.Scene(ambient_light=[1.0, 1.0, 1.0])
+        self.scene = pyrender.Scene(ambient_light=[3.0, 3.0, 3.0])
 
         camera = pyrender.IntrinsicsCamera(
             self.focal_length, self.focal_length, self.width / 2, self.height / 2
@@ -213,25 +208,6 @@ class PointClouder(object):
         matrix = r.as_matrix()
         self.camera_pose[:3, :3] = matrix
 
-        # # apply some shift to the camera
-        # # TODO: do the shift to the points
-        # extrinsics = np.array(
-        #     [
-        #         [1, 0, 0, 0.1],
-        #         [0, 1, 0, 0],
-        #         [0, 0, 1, 0],
-        #         [0, 0, 0, 1]
-        #     ],
-        #     dtype="float64"
-        # )
-        # temppose = extrinsics @ camera_pose
-        # scene.add(camera, pose=temppose)
-        # light = pyrender.SpotLight(
-        #     color=np.ones(3),
-        #     intensity=3.0,
-        #     innerConeAngle=np.pi/16.0,
-        #     outerConeAngle=np.pi/6.0
-        # )
         light = pyrender.PointLight(
             color=[1.0, 1.0, 1.0],
             intensity=0.0
@@ -244,37 +220,12 @@ class PointClouder(object):
         self.scene.add_node(self.nl)
         self.scene.add_node(self.nc)
 
+        # Set the pose and show the image.
         temppose = self.extrinsics @ self.camera_pose
         self.scene.set_pose(self.nl, pose=temppose)
         self.scene.set_pose(self.nc, pose=temppose)
         pyrender.Viewer(self.scene, use_raymond_lighting=True,
                         viewport_size=(self.width, self.height))
-
-        # path = list(np.linspace(0.0, 0.1, 2)) + \
-        #     list(np.linspace(0.1, -0.1, 4)) + list(np.linspace(-0.1, -0.0, 2))
-        # # move camera in x direction
-        # print("processing x path")
-        # for x in tqdm(path):
-        #     extrinsics = np.array(
-        #         [
-        #             [1, 0, 0, x],
-        #             [0, 1, 0, 0],
-        #             [0, 0, 1, 0],
-        #             [0, 0, 0, 1]
-        #         ],
-        #         dtype="float64"
-        #     )
-        #     temppose = extrinsics @ camera_pose
-        #     scene.set_pose(nl, pose=temppose)
-        #     scene.set_pose(nc, pose=temppose)
-
-        #     r = pyrender.OffscreenRenderer(self.width, self.height)
-        #     color, depth = r.render(scene)
-        #     # print(color)
-        #     # print(color.shape)
-        #     cv2.imshow("pyrender", color[:, :, ::-1])
-        #     cv2.waitKey(0)
-        # sys.exit()
 
     def get_num_xyz_points(self):
         return self.xyz_points.shape[1]

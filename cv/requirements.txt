@@ -18,3 +18,5 @@ PyQt5
 tqdm
 pyrender==0.1.32
 trimesh
+Keras
+tensorflow

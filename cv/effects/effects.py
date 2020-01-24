@@ -22,13 +22,13 @@ class Effect(object):
     Class for handling effects.
     """
 
-    def __init__(self, bgr, depth, show_gui=False, output_filename="effects.mp4"):
+    def __init__(self, bgr, depth, show_gui=False, output_filename="effect.mp4"):
         """
         Args:
         bgr
         depth
         show_gui
-        output_filename - "effects.mp4" for example
+        output_filename - "effect.mp4" for example
         """
         # pointcloud class
         self.pointclouder = PointClouder(bgr, depth)
@@ -49,13 +49,16 @@ class Effect(object):
     def produce_animation(self):
         print("Producing animation")
         fig = plt.figure()
+        # https://stackoverflow.com/questions/15882395/matplotlib-animation-how-to-remove-white-margin
+        fig.subplots_adjust(left=0, bottom=0, right=1, top=1, wspace=None, hspace=None)
         ims = []
+        plt.axis('off')
         for image in self.images_sequence:
             # need to reverse bgr to rgb
-            im = plt.imshow(image[:, :, ::-1], animated=True)
+            im = plt.imshow(image[:, :, ::-1], aspect='auto', animated=True)
             ims.append([im])
 
-        self.ani = animation.ArtistAnimation(fig, ims, interval=1000, blit=True,
+        self.ani = animation.ArtistAnimation(fig, ims, interval=100, blit=True,
                                              repeat_delay=0)
         if self.output_filename:
             print("Saving animation to {}".format(self.output_filename))
@@ -158,8 +161,8 @@ class MeshTDKenBurns(Effect):
         super().__init__(bgr, depth, show_gui=show_gui)
 
     def generate_image_sequence(self):
-        path = list(np.linspace(0.0, 0.1, 2)) + \
-            list(np.linspace(0.1, -0.1, 4)) + list(np.linspace(-0.1, -0.0, 2))
+        path = list(np.linspace(0.0, 0.2, 10)) + \
+            list(np.linspace(0.2, -0.2, 20)) + list(np.linspace(-0.2, -0.0, 10))
         # move camera in x direction
         print("processing x path")
         for x in tqdm(path):
