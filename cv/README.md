@@ -28,6 +28,16 @@ cd pyglet
 pip install .
 ```
 
+# Install MesaOS for windowless rendering
+```
+wget https://mesa.freedesktop.org/archive/mesa-18.0.0.tar.gz
+tar xf mesa-18.0.0.tar.xz
+cd mesa-18.0.0
+brew install pkg-config
+./configure --enable-osmesa --disable-driglx-direct --disable-gbm --enable-dri --with-gallium-drivers=swrast
+
+```
+
 # install Kernel to use with notebooks
 `python -m ipykernel install --user --display-name "imagear"`
 

@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.animation as animation
 from tqdm import tqdm
-
+import multiprocessing
 from pointcloud import PointClouder
 
 
@@ -44,6 +44,46 @@ class Effect(object):
     def generate_image_sequence(self):
         """
         Write a sequences of images to product the effect.
+        """
+        raise NotImplementedError
+
+    def parallel_generate_image_sequence(self):
+        """
+        Writes a sequences of images in parallel to product the effect.
+        """
+        args, func = (self.get_image_sequence_processor_args(), self.get_image_sequence_processor_function())
+        self.images_sequence = [None for x in range(len(args))]
+        processes = []
+
+        def process_image(image_sequence, image_num, func, arg):
+            image_sequence[image_num] = func(arg)
+            print("Finished Sequence: {}".format(image_num))
+        
+        for count in range(len(args)):
+            arg = args[count]
+            processes.append(multiprocessing.Process(target=process_image, args=(self.images_sequence, count, func, arg)))
+
+        for p in processes:
+            p.start()
+        
+        for p in processes:
+            p.join()
+        if None in self.images_sequence:
+            raise NotImplementedError
+        print("Finished full sequence")
+
+
+    def get_image_sequence_processor_args(self):
+        """ 
+        Returns a list of args that can be passed to a processor function 
+          to generate an image sequence
+        """
+        raise NotImplementedError
+
+    def get_image_sequence_processor_function(self):
+        """ 
+        Returns a processor function that can take a list of args to 
+          generate an individual image in an image sequence
         """
         raise NotImplementedError
 
@@ -175,6 +215,10 @@ class MeshTDKenBurns(Effect):
         super().__init__(bgr, depth, show_gui=show_gui)
 
     def generate_image_sequence(self):
+        try:
+            self.parallel_generate_image_sequence()
+        except Exception as e:
+            print("Unale to parallel process image sequence:\n{}".format(e))
         path = list(np.linspace(0.0, 0.2, 10)) + \
             list(np.linspace(0.2, -0.2, 20)) + \
             list(np.linspace(-0.2, -0.0, 10))
@@ -210,3 +254,44 @@ class MeshTDKenBurns(Effect):
                 extrinsics=extrinsics
             )
             self.images_sequence.append(image)
+
+    def get_image_sequence_processor_args(self):
+        """ 
+        Returns a list of args that can be passed to a processor function 
+          to generate an image sequence
+        """
+        path = list(np.linspace(0.0, 0.2, 10)) + \
+            list(np.linspace(0.2, -0.2, 20)) + \
+            list(np.linspace(-0.2, -0.0, 10))
+        # move camera in x direction
+        args = []
+        args += [np.array(
+                [
+                    [1, 0, 0, x],
+                    [0, 1, 0, 0],
+                    [0, 0, 1, 0],
+                    [0, 0, 0, 1]
+                ],
+                dtype="float64"
+            ) for x in tqdm(path)]
+        args += [np.array(
+                [
+                    [1, 0, 0, 0],
+                    [0, 1, 0, y],
+                    [0, 0, 1, 0],
+                    [0, 0, 0, 1]
+                ],
+                dtype="float64"
+            ) for y in tqdm(path)]
+        return args
+
+    def get_image_sequence_processor_function(self):
+        """ 
+        Returns a processor function that can take a list of args to 
+          generate an individual image in an image sequence
+        """
+        def processing_function(args):
+            return self.pointclouder.get_image_from_mesh(
+                extrinsics=args
+            )
+        return processing_function
