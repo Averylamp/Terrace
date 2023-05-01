@@ -14,7 +14,7 @@ Cython==0.29.14
 decorator==4.4.1
 defusedxml==0.6.0
 entrypoints==0.3
-Flask==1.1.1
+Flask==2.3.2
 freetype-py==2.1.0.post1
 future==0.18.2
 gast==0.2.2
